@@ -1,0 +1,44 @@
+{
+  "siteName": "Abu Bakr Al-Siddiq Mosque",
+  "language": {
+    "label": "Language"
+  },
+  "navigation": {
+    "label": "Primary navigation",
+    "home": "Home",
+    "prayerTimes": "Prayer Times",
+    "about": "About",
+    "history": "History",
+    "community": "Community",
+    "donate": "Donate",
+    "contact": "Visit / Contact"
+  },
+  "pages": {
+    "placeholder": "This page is part of the Phase 0 foundation. Content will be developed in a later phase.",
+    "home": {
+      "title": "Welcome",
+      "body": "The public website foundation is in place. Mosque information and community content will be added in a later phase."
+    },
+    "prayerTimes": { "title": "Prayer Times" },
+    "about": { "title": "About" },
+    "history": { "title": "History" },
+    "community": { "title": "Community" },
+    "donate": { "title": "Donate" },
+    "contact": { "title": "Visit / Contact" },
+    "display": {
+      "title": "Mosque Display",
+      "body": "The in-building display has not yet been implemented."
+    },
+    "admin": {
+      "title": "Administration",
+      "body": "Administrative functionality has not yet been implemented."
+    },
+    "notFound": {
+      "title": "Page not found",
+      "body": "The requested page does not exist."
+    }
+  },
+  "footer": {
+    "status": "Phase 0 project foundation"
+  }
+}

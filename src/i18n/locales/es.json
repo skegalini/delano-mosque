@@ -1,0 +1,14 @@
+{
+  "language": {
+    "label": "Idioma"
+  },
+  "pages": {
+    "home": {
+      "title": "Bienvenidos",
+      "body": "La base del sitio web público está preparada. El contenido se añadirá en una fase posterior."
+    }
+  },
+  "footer": {
+    "status": "Fundación del proyecto: Fase 0"
+  }
+}

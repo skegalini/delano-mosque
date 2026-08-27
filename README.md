@@ -2,7 +2,7 @@
 
 Official website project for Abu Bakr Al-Siddiq Mosque in Delano, California.
 
-Planned domain: `DelanoMosque.org`
+Planned domain: `delanomosque.org`
 
 ## Project Goal
 
@@ -117,7 +117,7 @@ Overall tone: calm, dignified, welcoming, historically grounded, and easy to nav
 
 ## Current Status
 
-This repository is currently in the groundwork/planning stage.
+This repository is currently in the groundwork/planning stage. Phase 0 establishes the frontend development foundation; website content and finished design are not yet implemented.
 
 The next areas to define are:
 
@@ -126,3 +126,21 @@ The next areas to define are:
 - Design system
 - Prayer-time strategy
 - Initial application architecture
+
+## Development
+
+Node.js 24 and pnpm are required.
+
+```bash
+pnpm install
+pnpm dev
+```
+
+Available validation commands:
+
+```bash
+pnpm build
+pnpm lint
+pnpm typecheck
+pnpm test
+```
