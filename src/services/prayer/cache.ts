@@ -23,10 +23,15 @@ export function buildPrayerCalendarCacheKey(
   config: AlAdhanConfig = alAdhanConfig,
 ): string {
   const monthKey = `${year}-${String(month).padStart(2, '0')}`
+  const locationKey = [
+    `lat-${config.location.latitude}`,
+    `lon-${config.location.longitude}`,
+    `tz-${encodeURIComponent(config.location.timezone)}`,
+  ].join(':')
   const methodKey = `method-${config.calculationMethod.id}-${config.calculationMethod.cacheName}`
   const schoolKey = `school-${config.asrSchool.id}-${config.asrSchool.cacheName}`
 
-  return `delano-mosque:prayer-calendar:v1:${monthKey}:${methodKey}:${schoolKey}`
+  return `delano-mosque:prayer-calendar:v2:${monthKey}:${locationKey}:${methodKey}:${schoolKey}`
 }
 
 export function createPrayerCalendarCache(
@@ -51,7 +56,9 @@ export function createPrayerCalendarCache(
 
         const value: unknown = JSON.parse(serialized)
 
-        if (!isCachedCalendarEntry(value, year, month, config.timezone)) {
+        if (
+          !isCachedCalendarEntry(value, year, month, config.location.timezone)
+        ) {
           return null
         }
 

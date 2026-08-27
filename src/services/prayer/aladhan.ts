@@ -28,9 +28,11 @@ export function buildAlAdhanCalendarUrl(
   }
 
   const url = new URL(`${config.endpoint}/${year}/${month}`)
-  url.searchParams.set('address', config.address)
+  url.searchParams.set('latitude', String(config.location.latitude))
+  url.searchParams.set('longitude', String(config.location.longitude))
   url.searchParams.set('method', String(config.calculationMethod.id))
   url.searchParams.set('school', String(config.asrSchool.id))
+  url.searchParams.set('timezonestring', config.location.timezone)
 
   return url
 }
@@ -68,7 +70,7 @@ export function normalizeAlAdhanCalendar(
   }
 
   const days = payload.data.map((entry) =>
-    normalizeCalendarEntry(entry, config.timezone),
+    normalizeCalendarEntry(entry, config.location.timezone),
   )
 
   if (days.length === 0) {
@@ -78,7 +80,7 @@ export function normalizeAlAdhanCalendar(
   return {
     year,
     month,
-    timezone: config.timezone,
+    timezone: config.location.timezone,
     days,
   }
 }

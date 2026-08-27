@@ -71,7 +71,7 @@ describe('AlAdhan integration', () => {
     ).toThrow('Invalid prayer timing data')
   })
 
-  it('fetches a Gregorian month with the Delano and calculation configuration', async () => {
+  it('fetches a Gregorian month with the verified coordinates and calculation configuration', async () => {
     const fetcher = vi.fn().mockResolvedValue({
       ok: true,
       json: async () => responsePayload(),
@@ -86,13 +86,16 @@ describe('AlAdhan integration', () => {
 
     const requestUrl = fetcher.mock.calls[0][0] as URL
     expect(requestUrl.origin + requestUrl.pathname).toBe(
-      'https://api.aladhan.com/v1/calendarByAddress/2026/8',
+      'https://api.aladhan.com/v1/calendar/2026/8',
     )
-    expect(requestUrl.searchParams.get('address')).toBe(
-      '1130 Kensington St, Delano, CA 93215',
+    expect(requestUrl.searchParams.get('latitude')).toBe('35.772517')
+    expect(requestUrl.searchParams.get('longitude')).toBe('-119.243572')
+    expect(requestUrl.searchParams.get('timezonestring')).toBe(
+      'America/Los_Angeles',
     )
     expect(requestUrl.searchParams.get('method')).toBe('2')
     expect(requestUrl.searchParams.get('school')).toBe('0')
+    expect(requestUrl.searchParams.has('address')).toBe(false)
   })
 
   it('constructs the expected provider URL without an API key', () => {

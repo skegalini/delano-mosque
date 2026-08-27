@@ -44,9 +44,9 @@ Future prayer architecture must distinguish:
 - Jummah
 - Special schedules
 
-AlAdhan is the implemented provider for calculated prayer times. The integration requests a Gregorian month by mosque address, normalizes only Fajr, Sunrise, Dhuhr, Asr, Maghrib, and Isha, and caches the normalized month in the browser for 24 hours. A stale cached month may be used when a refresh fails.
+AlAdhan is the implemented provider for calculated prayer times. The integration requests a Gregorian month using the mosque's verified fixed coordinates (`35.772517`, `-119.243572`) and `America/Los_Angeles`, normalizes only Fajr, Sunrise, Dhuhr, Asr, Maghrib, and Isha, and caches the normalized month in the browser for 24 hours. A stale cached month may be used when a refresh fails.
 
-During local verification on August 27, 2026, AlAdhan returned `400 Unable to geocode address` for the confirmed street address even though the generated request and parameters were valid. The UI therefore falls back to a cached month when available or shows the unavailable state. No approximate address or unconfirmed coordinates have been substituted; the production location strategy requires review if AlAdhan's address geocoding does not recover.
+Prayer calculations do not use address geocoding. The mosque's name and street address remain display and directions metadata; changing their text does not change the calculation location. Only an actual physical relocation should change the configured coordinates.
 
 The current configurable calculation setting is ISNA (AlAdhan method `2`). The current configurable Asr juristic-school setting is AlAdhan school `0`, its standard/Shafi calculation. Both settings are provisional development defaults and must be compared with and confirmed against the mosque's actual convention.
 
@@ -67,4 +67,4 @@ There is intentionally no backend yet. A future backend and administration imple
 
 ## Scope
 
-These decisions do not select domain models, content storage, a prayer provider, authentication, a database, or backend infrastructure. Those choices remain open until their requirements are defined.
+These decisions do not select content storage, authentication, a database, or backend infrastructure. Those choices remain open until their requirements are defined.

@@ -7,10 +7,17 @@ This document records confirmed project facts and current product decisions for 
 - Official English name: **Abu Bakr Al-Siddiq Mosque**
 - Arabic name: **مسجد أبي بكر الصديق**
 - Address: **1130 Kensington St, Delano, CA 93215**
-- Timezone: **America/Los_Angeles**
 - Planned domain: **delanomosque.org**
 
 The alternate Google romanization is not the canonical mosque name.
+
+## Prayer Calculation Location
+
+- Latitude: **35.772517**
+- Longitude: **-119.243572**
+- Timezone: **America/Los_Angeles**
+
+These verified coordinates identify the mosque's physical calculation location. They are independent of the mosque's display name and street-address formatting; only an actual physical relocation should change them.
 
 ## Visitor Facilities
 

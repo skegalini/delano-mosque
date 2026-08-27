@@ -1,9 +1,10 @@
-import { mosqueData } from '../../data/mosque'
-
 export type AlAdhanConfig = {
   endpoint: string
-  address: string
-  timezone: string
+  location: {
+    latitude: number
+    longitude: number
+    timezone: string
+  }
   calculationMethod: {
     id: number
     cacheName: string
@@ -15,9 +16,12 @@ export type AlAdhanConfig = {
 }
 
 export const alAdhanConfig: AlAdhanConfig = {
-  endpoint: 'https://api.aladhan.com/v1/calendarByAddress',
-  address: mosqueData.identity.address,
-  timezone: mosqueData.identity.timezone,
+  endpoint: 'https://api.aladhan.com/v1/calendar',
+  location: {
+    latitude: 35.772517,
+    longitude: -119.243572,
+    timezone: 'America/Los_Angeles',
+  },
   calculationMethod: {
     id: 2,
     cacheName: 'isna',

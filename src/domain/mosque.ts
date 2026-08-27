@@ -4,7 +4,6 @@ import type { DailyPrayerTimes } from './prayer'
 export type MosqueIdentity = {
   canonicalName: LocalizedContent
   address: string
-  timezone: string
   plannedDomain: string
 }
 

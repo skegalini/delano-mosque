@@ -27,7 +27,7 @@ export async function loadDailyPrayerTimes(
   const fetchCalendar = dependencies.fetchCalendar ?? fetchAlAdhanCalendar
   const { year, month, dateKey } = getDatePartsInTimeZone(
     instant,
-    alAdhanConfig.timezone,
+    alAdhanConfig.location.timezone,
   )
   const cached = cache.read(year, month)
   const cachedTimes = cached?.calendar.days.find((day) => day.date === dateKey)
