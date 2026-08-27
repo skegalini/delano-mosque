@@ -1,6 +1,7 @@
 import {
   formatInTimeZone,
   getDateKeyInTimeZone,
+  getDatePartsInTimeZone,
   isValidTimeZone,
 } from './timezone'
 
@@ -16,6 +17,12 @@ describe('timezone utilities', () => {
     const instant = new Date('2026-08-27T06:30:00Z')
 
     expect(getDateKeyInTimeZone(instant, timezone)).toBe('2026-08-26')
+    expect(getDatePartsInTimeZone(instant, timezone)).toEqual({
+      year: 2026,
+      month: 8,
+      day: 26,
+      dateKey: '2026-08-26',
+    })
   })
 
   it('formats an instant in the requested timezone', () => {

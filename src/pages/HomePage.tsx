@@ -1,6 +1,8 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { PrayerTimes } from '../components/prayer/PrayerTimes'
+
 const quickDestinations = [
   { to: '/history', label: 'navigation.history' },
   { to: '/programs', label: 'navigation.programs' },
@@ -28,9 +30,7 @@ export function HomePage() {
         </p>
       </section>
 
-      <HomeSection title={t('pages.home.prayerTimes.title')}>
-        {t('pages.home.prayerTimes.placeholder')}
-      </HomeSection>
+      <PrayerTimes />
 
       <HomeSection title={t('pages.home.jummah.title')}>
         {t('pages.home.jummah.placeholder')}

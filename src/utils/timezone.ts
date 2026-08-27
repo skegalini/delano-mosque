@@ -11,7 +11,17 @@ export function isValidTimeZone(timezone: string): boolean {
   }
 }
 
-export function getDateKeyInTimeZone(date: Date, timezone: string): string {
+export type DatePartsInTimeZone = {
+  year: number
+  month: number
+  day: number
+  dateKey: string
+}
+
+export function getDatePartsInTimeZone(
+  date: Date,
+  timezone: string,
+): DatePartsInTimeZone {
   assertValidDate(date)
 
   const parts = new Intl.DateTimeFormat('en-US', {
@@ -21,11 +31,20 @@ export function getDateKeyInTimeZone(date: Date, timezone: string): string {
     day: '2-digit',
   }).formatToParts(date)
 
-  const year = getPart(parts, 'year')
-  const month = getPart(parts, 'month')
-  const day = getPart(parts, 'day')
+  const year = Number(getPart(parts, 'year'))
+  const month = Number(getPart(parts, 'month'))
+  const day = Number(getPart(parts, 'day'))
 
-  return `${year}-${month}-${day}`
+  return {
+    year,
+    month,
+    day,
+    dateKey: `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`,
+  }
+}
+
+export function getDateKeyInTimeZone(date: Date, timezone: string): string {
+  return getDatePartsInTimeZone(date, timezone).dateKey
 }
 
 export function formatInTimeZone(

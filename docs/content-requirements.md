@@ -17,6 +17,8 @@ This checklist tracks confirmed information and content still needed for relevan
 
 ### Prayer
 
+The current implementation provisionally uses AlAdhan's ISNA calculation method (`2`) and standard/Shafi Asr school (`0`). These settings remain unconfirmed and should be compared with the mosque's actual convention.
+
 - [ ] Actual daily iqamah schedule
 - [ ] Jummah time(s)
 - [ ] Preferred prayer calculation convention or method

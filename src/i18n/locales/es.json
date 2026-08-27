@@ -12,7 +12,18 @@
   "pages": {
     "home": {
       "title": "Bienvenidos",
-      "body": "La base del sitio web público está preparada. El contenido se añadirá en una fase posterior."
+      "body": "La base del sitio web público está preparada. El contenido se añadirá en una fase posterior.",
+      "prayerTimes": {
+        "title": "Horarios de oración de hoy",
+        "labels": {
+          "fajr": "Fajr",
+          "sunrise": "Amanecer",
+          "dhuhr": "Dhuhr",
+          "asr": "Asr",
+          "maghrib": "Maghrib",
+          "isha": "Isha"
+        }
+      }
     },
     "history": { "title": "Historia" },
     "programs": { "title": "Programas" },

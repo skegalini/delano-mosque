@@ -1,5 +1,5 @@
 import type { LocalizedContent } from './localization'
-import type { PrayerSchedule } from './prayer'
+import type { DailyPrayerTimes } from './prayer'
 
 export type MosqueIdentity = {
   canonicalName: LocalizedContent
@@ -27,5 +27,5 @@ export type MosqueData = {
   identity: MosqueIdentity
   visitorFacilities: VisitorFacilities
   publicContact: PublicContact
-  currentPrayerSchedule: PrayerSchedule | null
+  currentPrayerSchedule: DailyPrayerTimes | null
 }

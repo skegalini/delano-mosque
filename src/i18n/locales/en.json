@@ -18,7 +18,17 @@
       "body": "The public website foundation is in place. Mosque information and community content will be added in a later phase.",
       "prayerTimes": {
         "title": "Today's Prayer Times",
-        "placeholder": "Prayer times will appear here after the prayer-time strategy is defined. No times are currently published."
+        "loading": "Loading calculated prayer times…",
+        "unavailable": "Prayer times are temporarily unavailable.",
+        "cachedNotice": "Showing saved calculated prayer times while the latest update is unavailable.",
+        "labels": {
+          "fajr": "Fajr",
+          "sunrise": "Sunrise",
+          "dhuhr": "Dhuhr",
+          "asr": "Asr",
+          "maghrib": "Maghrib",
+          "isha": "Isha"
+        }
       },
       "jummah": {
         "title": "Jummah Information",
