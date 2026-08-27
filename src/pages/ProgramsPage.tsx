@@ -2,11 +2,11 @@ import { useTranslation } from 'react-i18next'
 
 import { PageShell } from '../components/layout/PageShell'
 
-export function PrayerTimesPage() {
+export function ProgramsPage() {
   const { t } = useTranslation()
 
   return (
-    <PageShell title={t('pages.prayerTimes.title')}>
+    <PageShell title={t('pages.programs.title')}>
       {t('pages.placeholder')}
     </PageShell>
   )

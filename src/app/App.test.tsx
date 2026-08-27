@@ -16,10 +16,18 @@ describe('application foundation', () => {
     expect(screen.getByRole('heading', { name: 'Welcome' })).toBeInTheDocument()
   })
 
-  it('renders an expected public route', () => {
+  it('renders the history route', () => {
     renderRoute('/history')
 
     expect(screen.getByRole('heading', { name: 'History' })).toBeInTheDocument()
+  })
+
+  it('renders the programs route', () => {
+    renderRoute('/programs')
+
+    expect(
+      screen.getByRole('heading', { name: 'Programs' }),
+    ).toBeInTheDocument()
   })
 
   it('changes the document language and direction for Arabic', async () => {

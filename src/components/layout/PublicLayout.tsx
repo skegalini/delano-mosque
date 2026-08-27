@@ -5,12 +5,10 @@ import type { SupportedLanguage } from '../../i18n/config'
 
 const navigation = [
   { to: '/', label: 'navigation.home' },
-  { to: '/prayer-times', label: 'navigation.prayerTimes' },
-  { to: '/about', label: 'navigation.about' },
   { to: '/history', label: 'navigation.history' },
-  { to: '/community', label: 'navigation.community' },
+  { to: '/programs', label: 'navigation.programs' },
   { to: '/donate', label: 'navigation.donate' },
-  { to: '/contact', label: 'navigation.contact' },
+  { to: '/about', label: 'navigation.about' },
 ] as const
 
 export function PublicLayout() {

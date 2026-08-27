@@ -2,11 +2,22 @@
   "language": {
     "label": "Idioma"
   },
+  "navigation": {
+    "home": "Inicio",
+    "history": "Historia",
+    "programs": "Programas",
+    "donate": "Donar",
+    "about": "Acerca de"
+  },
   "pages": {
     "home": {
       "title": "Bienvenidos",
       "body": "La base del sitio web público está preparada. El contenido se añadirá en una fase posterior."
-    }
+    },
+    "history": { "title": "Historia" },
+    "programs": { "title": "Programas" },
+    "donate": { "title": "Donar" },
+    "about": { "title": "Acerca de" }
   },
   "footer": {
     "status": "Fundación del proyecto: Fase 0"

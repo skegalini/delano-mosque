@@ -2,11 +2,22 @@
   "language": {
     "label": "اللغة"
   },
+  "navigation": {
+    "home": "الرئيسية",
+    "history": "التاريخ",
+    "programs": "البرامج",
+    "donate": "التبرع",
+    "about": "عن المسجد"
+  },
   "pages": {
     "home": {
       "title": "مرحبًا",
       "body": "تم إعداد الأساس للموقع العام. سيُضاف المحتوى في مرحلة لاحقة."
-    }
+    },
+    "history": { "title": "التاريخ" },
+    "programs": { "title": "البرامج" },
+    "donate": { "title": "التبرع" },
+    "about": { "title": "عن المسجد" }
   },
   "footer": {
     "status": "المرحلة التأسيسية للمشروع"

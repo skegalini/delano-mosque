@@ -14,24 +14,12 @@ The site should make essential information easy to find, preserve the mosque's l
 
 ### Home
 
-- Mosque introduction
-- Today's prayer times
+- Mosque identity and introduction
+- Today's prayer times and Jummah information
+- Quick links to History, Programs, Donate, and About / Visit
+- Upcoming programs and events
 - Important announcements
-- Upcoming events and programs
-- Quick links to prayer times, directions, donations, and community information
-
-### Prayer Times
-
-- Daily salah times
-- Iqamah times
-- Jummah information
-- Clear date and location context
-
-### About
-
-- Mosque mission and community role
-- Leadership/contact information where appropriate
-- Basic information for new visitors
+- Location and directions
 
 ### History
 
@@ -39,12 +27,11 @@ The site should make essential information easy to find, preserve the mosque's l
 - Yemeni community history in Delano and the surrounding San Joaquin Valley
 - Oral histories, photographs, archival material, and community stories as they are collected
 
-### Community
+### Programs
 
-- Classes and educational programs
+- Quran education and Arabic classes
 - Youth and family programs
-- Community events
-- Announcements
+- Recurring classes, community programs, and events
 
 ### Donate
 
@@ -52,8 +39,10 @@ The site should make essential information easy to find, preserve the mosque's l
 - QR-code and online donation options once the official payment process is confirmed
 - Clear explanation of what donations support
 
-### Visit / Contact
+### About
 
+- Mosque overview, mission, and community role
+- Leadership/contact information where appropriate
 - Address and directions
 - Mosque hours/access information
 - Contact information
@@ -63,9 +52,18 @@ The site should make essential information easy to find, preserve the mosque's l
 
 Keep this as one mosque platform rather than several disconnected applications:
 
-- `/` and normal public routes: public mosque website
-- `/display`: mosque display/prayer-time screen intended for use inside the building
-- `/admin`: private administration area for authorized mosque staff
+- `/`: Home
+- `/history`: History
+- `/programs`: Programs
+- `/donate`: Donate
+- `/about`: About, visit, and contact information
+
+This public structure is intentionally small and discoverable. Home owns the normal public prayer-times and Jummah experience rather than sending visitors to a separate prayer-times page.
+
+Separate application surfaces remain part of the same platform:
+
+- `/display`: mosque prayer/display screen intended for use inside the building
+- `/admin`: future private administration area for authorized mosque staff
 
 Ordinary visitors should not need accounts. Authentication should be limited to administrative functionality unless a later requirement clearly calls for otherwise.
 
