@@ -27,9 +27,9 @@ For example:
 ```text
 Prayer data
     |
-    +--> Home
+    +--> Home (implemented)
     |
-    +--> /display
+    +--> /display (future consumer)
     |
     +<-- future /admin updates
 ```
@@ -44,7 +44,15 @@ Future prayer architecture must distinguish:
 - Jummah
 - Special schedules
 
-No prayer provider has been selected or integrated. The mosque timezone is `America/Los_Angeles`.
+AlAdhan is the implemented provider for calculated prayer times. The integration requests a Gregorian month using the mosque's verified fixed coordinates (`35.772517`, `-119.243572`) and `America/Los_Angeles`, normalizes only Fajr, Sunrise, Dhuhr, Asr, Maghrib, and Isha, and caches the normalized month in the browser for 24 hours. A stale cached month may be used when a refresh fails.
+
+Prayer calculations do not use address geocoding. The mosque's name and street address remain display and directions metadata; changing their text does not change the calculation location. Only an actual physical relocation should change the configured coordinates.
+
+The current configurable calculation setting is ISNA (AlAdhan method `2`). The current configurable Asr juristic-school setting is AlAdhan school `0`, its standard/Shafi calculation. Both settings are provisional development defaults and must be compared with and confirmed against the mosque's actual convention.
+
+AlAdhan never owns mosque-controlled iqamah times, Jummah, Eid, Ramadan-specific schedules, or other special overrides. Home and `/display` are still intended to consume the same normalized prayer model as those mosque-controlled data sources are added later.
+
+The mosque timezone is `America/Los_Angeles`.
 
 ## Content vs UI Translation
 
@@ -59,4 +67,4 @@ There is intentionally no backend yet. A future backend and administration imple
 
 ## Scope
 
-These decisions do not select domain models, content storage, a prayer provider, authentication, a database, or backend infrastructure. Those choices remain open until their requirements are defined.
+These decisions do not select content storage, authentication, a database, or backend infrastructure. Those choices remain open until their requirements are defined.

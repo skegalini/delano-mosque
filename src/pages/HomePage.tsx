@@ -1,6 +1,10 @@
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import { VisitorInformation } from '../components/mosque/VisitorInformation'
+import { JummahInformation } from '../components/prayer/JummahInformation'
+import { PrayerTimes } from '../components/prayer/PrayerTimes'
+
 const quickDestinations = [
   { to: '/history', label: 'navigation.history' },
   { to: '/programs', label: 'navigation.programs' },
@@ -28,13 +32,11 @@ export function HomePage() {
         </p>
       </section>
 
-      <HomeSection title={t('pages.home.prayerTimes.title')}>
-        {t('pages.home.prayerTimes.placeholder')}
-      </HomeSection>
+      <PrayerTimes />
 
-      <HomeSection title={t('pages.home.jummah.title')}>
-        {t('pages.home.jummah.placeholder')}
-      </HomeSection>
+      <JummahInformation />
+
+      <VisitorInformation />
 
       <section aria-labelledby="quick-destinations-title">
         <h2
@@ -63,10 +65,6 @@ export function HomePage() {
 
       <HomeSection title={t('pages.home.announcements.title')}>
         {t('pages.home.announcements.placeholder')}
-      </HomeSection>
-
-      <HomeSection title={t('pages.home.location.title')}>
-        {t('pages.home.location.placeholder')}
       </HomeSection>
     </div>
   )
