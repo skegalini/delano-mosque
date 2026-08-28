@@ -31,8 +31,10 @@
         }
       },
       "jummah": {
-        "title": "Jummah Information",
-        "placeholder": "Verified Jummah information will appear here when it is available."
+        "title": "Jummah Prayer",
+        "days": {
+          "friday": "Friday"
+        }
       },
       "quickDestinations": {
         "title": "Explore",
@@ -45,16 +47,24 @@
       "announcements": {
         "title": "Announcements",
         "placeholder": "Important mosque announcements may appear here."
-      },
-      "location": {
-        "title": "Location and Directions",
-        "placeholder": "Verified location and visitor information will appear here."
       }
     },
-    "about": { "title": "About" },
+    "about": {
+      "title": "About",
+      "heading": "About {{mosqueName}}"
+    },
     "history": { "title": "History" },
     "programs": { "title": "Programs" },
-    "donate": { "title": "Donate" },
+    "donate": {
+      "title": "Donate",
+      "heading": "Support {{mosqueName}}",
+      "introduction": "Your support helps sustain the mosque and its community.",
+      "online": {
+        "title": "Online Donations",
+        "pending": "Online giving through Givebutter is being prepared.",
+        "pendingDetail": "Once the mosque's Givebutter account is ready, the secure donation form will appear here."
+      }
+    },
     "display": {
       "title": "Mosque Display",
       "body": "The in-building display has not yet been implemented."
@@ -67,6 +77,15 @@
       "title": "Page not found",
       "body": "The requested page does not exist."
     }
+  },
+  "visitorInformation": {
+    "title": "Visit and Contact",
+    "address": "Address",
+    "womensEntrance": "Women's Entrance",
+    "womensEntranceAvailable": "A separate entrance is available for women.",
+    "wudu": "Wudu",
+    "wuduAvailable": "Wudu facilities are available.",
+    "contact": "Contact"
   },
   "footer": {
     "status": "Phase 0 project foundation"

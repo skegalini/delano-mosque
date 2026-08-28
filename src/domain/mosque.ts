@@ -22,9 +22,17 @@ export type PublicContact = {
   email: string | null
 }
 
+export type JummahSchedule = {
+  day: 'friday'
+  time: string
+  notes: LocalizedContent | null
+}
+
 export type MosqueData = {
   identity: MosqueIdentity
+  timezone: string
   visitorFacilities: VisitorFacilities
   publicContact: PublicContact
+  jummah: JummahSchedule
   currentPrayerSchedule: DailyPrayerTimes | null
 }

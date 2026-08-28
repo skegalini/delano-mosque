@@ -1,5 +1,8 @@
 import type { MonthlyPrayerCalendar } from '../../domain/prayer'
-import { alAdhanConfig, type AlAdhanConfig } from './config'
+import {
+  prayerCalculationConfig,
+  type PrayerCalculationConfig,
+} from '../../config/prayer'
 
 const CACHE_MAX_AGE_MS = 24 * 60 * 60 * 1000
 
@@ -20,7 +23,7 @@ export type PrayerCalendarCache = {
 export function buildPrayerCalendarCacheKey(
   year: number,
   month: number,
-  config: AlAdhanConfig = alAdhanConfig,
+  config: PrayerCalculationConfig = prayerCalculationConfig,
 ): string {
   const monthKey = `${year}-${String(month).padStart(2, '0')}`
   const locationKey = [
@@ -37,7 +40,7 @@ export function buildPrayerCalendarCacheKey(
 export function createPrayerCalendarCache(
   storage: Pick<Storage, 'getItem' | 'setItem'> | null,
   now: () => number = Date.now,
-  config: AlAdhanConfig = alAdhanConfig,
+  config: PrayerCalculationConfig = prayerCalculationConfig,
 ): PrayerCalendarCache {
   return {
     read(year, month) {

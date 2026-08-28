@@ -1,5 +1,4 @@
-export type AlAdhanConfig = {
-  endpoint: string
+export type PrayerCalculationConfig = {
   location: {
     latitude: number
     longitude: number
@@ -15,8 +14,7 @@ export type AlAdhanConfig = {
   }
 }
 
-export const alAdhanConfig: AlAdhanConfig = {
-  endpoint: 'https://api.aladhan.com/v1/calendar',
+export const prayerCalculationConfig: PrayerCalculationConfig = {
   location: {
     latitude: 35.772517,
     longitude: -119.243572,

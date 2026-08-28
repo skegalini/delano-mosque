@@ -1,3 +1,4 @@
+import { prayerCalculationConfig } from '../config/prayer'
 import type { MosqueData } from '../domain/mosque'
 
 export const mosqueData = {
@@ -9,6 +10,7 @@ export const mosqueData = {
     address: '1130 Kensington St, Delano, CA 93215',
     plannedDomain: 'delanomosque.org',
   },
+  timezone: prayerCalculationConfig.location.timezone,
   visitorFacilities: {
     separateWomensEntrance: true,
     wuduAvailable: true,
@@ -20,7 +22,12 @@ export const mosqueData = {
   },
   publicContact: {
     phone: null,
-    email: null,
+    email: 'delanomosque@gmail.com',
+  },
+  jummah: {
+    day: 'friday',
+    time: '13:00',
+    notes: null,
   },
   currentPrayerSchedule: null,
 } satisfies MosqueData

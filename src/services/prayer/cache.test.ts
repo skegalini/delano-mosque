@@ -1,14 +1,14 @@
+import { prayerCalculationConfig } from '../../config/prayer'
 import { buildPrayerCalendarCacheKey } from './cache'
-import { alAdhanConfig } from './config'
 
 describe('prayer calendar cache identity', () => {
   it('changes when the calculation coordinates change', () => {
     const originalKey = buildPrayerCalendarCacheKey(2026, 8)
     const relocatedKey = buildPrayerCalendarCacheKey(2026, 8, {
-      ...alAdhanConfig,
+      ...prayerCalculationConfig,
       location: {
-        ...alAdhanConfig.location,
-        latitude: alAdhanConfig.location.latitude + 0.001,
+        ...prayerCalculationConfig.location,
+        latitude: prayerCalculationConfig.location.latitude + 0.001,
       },
     })
 

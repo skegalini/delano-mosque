@@ -1,11 +1,11 @@
 import type { DailyPrayerTimes } from '../../domain/prayer'
+import { prayerCalculationConfig } from '../../config/prayer'
 import { getDatePartsInTimeZone } from '../../utils/timezone'
 import { fetchAlAdhanCalendar } from './aladhan'
 import {
   createBrowserPrayerCalendarCache,
   type PrayerCalendarCache,
 } from './cache'
-import { alAdhanConfig } from './config'
 
 export type PrayerTimesSource = 'network' | 'cache' | 'stale-cache'
 
@@ -27,7 +27,7 @@ export async function loadDailyPrayerTimes(
   const fetchCalendar = dependencies.fetchCalendar ?? fetchAlAdhanCalendar
   const { year, month, dateKey } = getDatePartsInTimeZone(
     instant,
-    alAdhanConfig.location.timezone,
+    prayerCalculationConfig.location.timezone,
   )
   const cached = cache.read(year, month)
   const cachedTimes = cached?.calendar.days.find((day) => day.date === dateKey)

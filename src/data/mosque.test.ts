@@ -10,6 +10,7 @@ describe('initial mosque data', () => {
       address: '1130 Kensington St, Delano, CA 93215',
       plannedDomain: 'delanomosque.org',
     })
+    expect(mosqueData.timezone).toBe('America/Los_Angeles')
   })
 
   it('records confirmed visitor facilities', () => {
@@ -17,8 +18,19 @@ describe('initial mosque data', () => {
     expect(mosqueData.visitorFacilities.wuduAvailable).toBe(true)
   })
 
+  it('contains confirmed mosque-owned schedule and contact information', () => {
+    expect(mosqueData.publicContact).toEqual({
+      phone: null,
+      email: 'delanomosque@gmail.com',
+    })
+    expect(mosqueData.jummah).toEqual({
+      day: 'friday',
+      time: '13:00',
+      notes: null,
+    })
+  })
+
   it('leaves unconfirmed information null', () => {
-    expect(mosqueData.publicContact).toEqual({ phone: null, email: null })
     expect(mosqueData.visitorFacilities.parkingGuidance).toBeNull()
     expect(mosqueData.visitorFacilities.accessibilityInformation).toBeNull()
     expect(mosqueData.currentPrayerSchedule).toBeNull()

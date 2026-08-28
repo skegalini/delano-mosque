@@ -38,7 +38,17 @@ These details are not currently required and can be added when confirmed.
 
 ## Contact Information
 
-The phone number currently visible on Google is not approved website contact information. Public contact details require confirmation before publication.
+- Approved public mosque email: **delanomosque@gmail.com**
+- No public phone number is currently approved.
+
+The phone number currently visible on Google is not approved website contact information. Do not publish the imam's personal phone number.
+
+## Jummah
+
+- Confirmed day: **Friday**
+- Confirmed prayer time: **1:00 PM**
+
+Jummah is mosque-controlled information and does not come from AlAdhan. No separate khutbah time or additional service has been confirmed.
 
 ## Public Information Architecture
 
@@ -86,6 +96,17 @@ The intended information hierarchy is approximately:
 8. Location / directions
 
 This hierarchy is not a finished visual specification.
+
+## Donations
+
+- Donations are intended for Abu Bakr Al-Siddiq Mosque itself.
+- Givebutter is the approved intended donation provider.
+- The mosque's Givebutter account and campaign configuration are still pending.
+- No campaign URL or embed ID is currently available.
+- The website must not directly process or store payment or banking information.
+- The future provider should offer its own donor privacy or anonymity controls. The React application should not maintain a separate anonymity database, and the mosque or provider may still retain donor information privately for payments, receipts, or accounting.
+
+**Mosque banking credentials and account/routing numbers must never be committed to this repository.** They belong only inside the authorized payment-provider or banking setup.
 
 ## Kind Word Foundation
 

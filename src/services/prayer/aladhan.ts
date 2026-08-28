@@ -2,7 +2,12 @@ import type {
   DailyPrayerTimes,
   MonthlyPrayerCalendar,
 } from '../../domain/prayer'
-import { alAdhanConfig, type AlAdhanConfig } from './config'
+import {
+  prayerCalculationConfig,
+  type PrayerCalculationConfig,
+} from '../../config/prayer'
+
+const ALADHAN_CALENDAR_ENDPOINT = 'https://api.aladhan.com/v1/calendar'
 
 type AlAdhanCalendarEntry = {
   timings: Record<string, unknown>
@@ -16,7 +21,7 @@ type AlAdhanCalendarEntry = {
 export function buildAlAdhanCalendarUrl(
   year: number,
   month: number,
-  config: AlAdhanConfig = alAdhanConfig,
+  config: PrayerCalculationConfig = prayerCalculationConfig,
 ): URL {
   if (
     !Number.isInteger(year) ||
@@ -27,7 +32,7 @@ export function buildAlAdhanCalendarUrl(
     throw new RangeError('Invalid Gregorian calendar month')
   }
 
-  const url = new URL(`${config.endpoint}/${year}/${month}`)
+  const url = new URL(`${ALADHAN_CALENDAR_ENDPOINT}/${year}/${month}`)
   url.searchParams.set('latitude', String(config.location.latitude))
   url.searchParams.set('longitude', String(config.location.longitude))
   url.searchParams.set('method', String(config.calculationMethod.id))
@@ -41,7 +46,7 @@ export async function fetchAlAdhanCalendar(
   year: number,
   month: number,
   fetcher: typeof fetch = fetch,
-  config: AlAdhanConfig = alAdhanConfig,
+  config: PrayerCalculationConfig = prayerCalculationConfig,
 ): Promise<MonthlyPrayerCalendar> {
   const response = await fetcher(buildAlAdhanCalendarUrl(year, month, config), {
     headers: { Accept: 'application/json' },
@@ -59,7 +64,7 @@ export function normalizeAlAdhanCalendar(
   payload: unknown,
   year: number,
   month: number,
-  config: AlAdhanConfig = alAdhanConfig,
+  config: PrayerCalculationConfig = prayerCalculationConfig,
 ): MonthlyPrayerCalendar {
   if (
     !isRecord(payload) ||

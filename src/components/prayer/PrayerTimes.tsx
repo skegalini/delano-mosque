@@ -2,6 +2,7 @@ import { useTranslation } from 'react-i18next'
 
 import type { DailyPrayerTimes } from '../../domain/prayer'
 import { usePrayerTimes } from '../../hooks/usePrayerTimes'
+import { formatClockTime } from '../../utils/clock'
 
 const displayedTimes = [
   { key: 'fajr', label: 'pages.home.prayerTimes.labels.fajr' },
@@ -55,7 +56,7 @@ export function PrayerTimes() {
               <div className="contents" key={key}>
                 <dt>{t(label)}</dt>
                 <dd className="font-medium tabular-nums">
-                  {formatPrayerTime(state.result.times[key], locale)}
+                  {formatClockTime(state.result.times[key], locale)}
                 </dd>
               </div>
             ))}
@@ -78,18 +79,6 @@ function formatPrayerDate(dateKey: string, locale: string): string {
     weekday: 'long',
     month: 'long',
     day: 'numeric',
-    timeZone: 'UTC',
-  }).format(date)
-}
-
-function formatPrayerTime(time: string, locale: string): string {
-  const [hour, minute] = time.split(':').map(Number)
-  const date = new Date(Date.UTC(2000, 0, 1, hour, minute))
-
-  return new Intl.DateTimeFormat(locale, {
-    hour: 'numeric',
-    minute: '2-digit',
-    hour12: true,
     timeZone: 'UTC',
   }).format(date)
 }
