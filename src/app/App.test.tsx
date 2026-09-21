@@ -1,7 +1,8 @@
-import { render, screen } from '@testing-library/react'
+import { render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 
+import i18n from '../i18n/config'
 import { routes } from './router'
 
 const renderRoute = (path: string) => {
@@ -10,16 +11,167 @@ const renderRoute = (path: string) => {
 }
 
 describe('application foundation', () => {
+  beforeEach(async () => {
+    await i18n.changeLanguage('en')
+  })
+
   it('renders the home route', () => {
     renderRoute('/')
 
-    expect(screen.getByRole('heading', { name: 'Welcome' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', {
+        name: 'A House of Worship, Learning, and Community.',
+      }),
+    ).toBeInTheDocument()
+    expect(
+      screen
+        .getAllByRole('link', { name: 'Prayer Times' })
+        .some((link) => link.getAttribute('href') === '#prayer-times'),
+    ).toBe(true)
+    expect(
+      screen.getByRole('img', { name: 'Abu Bakr Al-Siddiq Mosque' }),
+    ).toHaveAttribute('src', '/assets/brand/abu-bakr-logo-dark-clean.png')
   })
 
   it('renders the history route', () => {
     renderRoute('/history')
 
     expect(screen.getByRole('heading', { name: 'History' })).toBeInTheDocument()
+  })
+
+  it('renders the approved About history in the selected language', async () => {
+    const user = userEvent.setup()
+    const { container } = renderRoute('/about')
+
+    expect(
+      screen.getByRole('heading', {
+        name: 'About Abu Bakr Al-Siddiq Mosque',
+      }),
+    ).toBeInTheDocument()
+    expect(screen.getByText('Our History')).toBeInTheDocument()
+    expect(
+      screen.getAllByRole('heading', { name: 'Rooted in Delano' }),
+    ).toHaveLength(1)
+    expect(
+      container.querySelector(
+        '.history-chapter--opening .history-chapter__body',
+      ),
+    ).toHaveTextContent(/^Abu Bakr Al-Siddiq Mosque/)
+    expect(
+      screen.getByText(/including the home of Mohammed and Irma Abdullah/),
+    ).toBeInTheDocument()
+    expect(screen.queryByText(/Nora Abdullah/)).not.toBeInTheDocument()
+    expect(
+      screen.getByText(/The mosque was named in honor of Abu Bakr al-Siddiq/),
+    ).toHaveTextContent('Prophet Muhammad ﷺ')
+    expect(screen.getByLabelText('Featured photos')).toBeInTheDocument()
+    expect(
+      Array.from(
+        container.querySelectorAll<HTMLImageElement>(
+          '.featured-history-media__desktop img',
+        ),
+        (image) => image.getAttribute('src'),
+      ),
+    ).toEqual([
+      '/assets/history/archive/img584.jpg',
+      '/assets/history/archive/img586.jpg',
+      '/assets/history/archive/img553.jpg',
+      '/assets/history/archive/img557.jpg',
+    ])
+    expect(
+      screen.getByRole('heading', { name: 'Delano · 2012' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByLabelText('2012 community photo album'),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('Photos from 2012, courtesy of Jonathan Friedlander.'),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', { name: 'A Story Preserved on Film' }),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByTitle(
+        'Documentary about Delano’s Yemeni Muslim community by Erik Friedl',
+      ),
+    ).toHaveAttribute(
+      'src',
+      'https://www.youtube-nocookie.com/embed/yC9CVepWQUY',
+    )
+    expect(
+      screen.getByRole('link', { name: /Watch on YouTube/ }),
+    ).toHaveAttribute('href', 'https://youtu.be/yC9CVepWQUY')
+
+    await user.selectOptions(screen.getByLabelText('Language'), 'es')
+    expect(screen.getByText('Nuestra Historia')).toBeInTheDocument()
+    expect(screen.getByLabelText('Fotografías destacadas')).toBeInTheDocument()
+    expect(
+      screen.getByText(/la de Mohammed e Irma Abdullah/),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText(
+        'Fotografías de 2012, por cortesía de Jonathan Friedlander.',
+      ),
+    ).toBeInTheDocument()
+
+    await user.selectOptions(screen.getByLabelText('Idioma'), 'ar')
+    expect(screen.getByText('تاريخنا')).toBeInTheDocument()
+    expect(
+      screen.getByText(/وسُمّي المسجد باسم أبي بكر الصديق/),
+    ).toHaveTextContent('رضي الله عنه')
+    expect(screen.getByText(/منزل محمد وإيرما عبد الله/)).toBeInTheDocument()
+    expect(screen.getByLabelText('صور مختارة')).toBeInTheDocument()
+    expect(
+      screen.getByText('صور من عام 2012، مقدمة بإذن من جوناثان فريدلاندر.'),
+    ).toBeInTheDocument()
+    expect(
+      screen.getByText('الفيلم الوثائقي مقدم بإذن من إريك فريدل (2012).'),
+    ).toBeInTheDocument()
+    expect(document.documentElement).toHaveAttribute('dir', 'rtl')
+  })
+
+  it('orders primary navigation by visitor relevance', () => {
+    renderRoute('/')
+
+    const primaryNavigation = screen.getByRole('navigation', {
+      name: 'Primary navigation',
+    })
+    const links = within(primaryNavigation).getAllByRole('link')
+
+    expect(links.map((link) => link.textContent)).toEqual([
+      'Home',
+      'Visit',
+      'Programs',
+      'About',
+    ])
+    expect(links.map((link) => link.getAttribute('href'))).toEqual([
+      '/',
+      '/visit',
+      '/programs',
+      '/about',
+    ])
+    const headerDonateButton = screen
+      .getAllByRole('button', { name: 'Donate' })
+      .find((button) => button.classList.contains('site-header__donate'))
+
+    expect(headerDonateButton).toHaveAttribute(
+      'data-gb-account',
+      'pmetkEb39XTuRaXB',
+    )
+    expect(headerDonateButton).toHaveAttribute('data-gb-campaign', 'HUXSOZ')
+    // It is the only donate control, and it carries the hand-heart mark.
+    expect(screen.getAllByRole('button', { name: 'Donate' })).toHaveLength(1)
+    expect(headerDonateButton?.querySelector('svg')).toBeInTheDocument()
+  })
+
+  it('renders visitor information on the Visit route', () => {
+    renderRoute('/visit')
+
+    expect(screen.getByRole('main')).toHaveClass('site-main--visit')
+    expect(
+      screen.getByRole('heading', { name: 'Plan Your Visit' }),
+    ).toBeInTheDocument()
+    expect(screen.getByText('1130 Kensington St')).toBeInTheDocument()
   })
 
   it('renders the programs route', () => {
@@ -38,7 +190,48 @@ describe('application foundation', () => {
 
     expect(document.documentElement).toHaveAttribute('lang', 'ar')
     expect(document.documentElement).toHaveAttribute('dir', 'rtl')
-    expect(screen.getByRole('heading', { name: 'مرحبًا' })).toBeInTheDocument()
+    expect(
+      screen.getByRole('heading', {
+        name: 'بيت للعبادة والعلم والمجتمع.',
+      }),
+    ).toBeInTheDocument()
+  })
+
+  it('exposes an accessible mobile navigation control', async () => {
+    const user = userEvent.setup()
+    renderRoute('/')
+
+    const menuButton = screen.getByRole('button', {
+      name: 'Open navigation menu',
+    })
+    expect(menuButton).toHaveAttribute('aria-expanded', 'false')
+
+    await user.click(menuButton)
+
+    expect(
+      screen.getByRole('button', { name: 'Close navigation menu' }),
+    ).toHaveAttribute('aria-expanded', 'true')
+  })
+
+  it('always uses the green mosque theme regardless of system preference', () => {
+    vi.stubGlobal(
+      'matchMedia',
+      vi.fn(() => ({
+        matches: false,
+        addEventListener: vi.fn(),
+        removeEventListener: vi.fn(),
+      })),
+    )
+
+    renderRoute('/')
+
+    // No toggle, and nothing reacts to the light system preference above.
+    expect(
+      screen.queryByRole('button', { name: /switch to (light|dark) mode/i }),
+    ).not.toBeInTheDocument()
+    expect(
+      screen.getByRole('img', { name: 'Abu Bakr Al-Siddiq Mosque' }),
+    ).toHaveAttribute('src', '/assets/brand/abu-bakr-logo-dark-clean.png')
   })
 
   it('renders the not-found page for a missing route', () => {

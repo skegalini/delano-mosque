@@ -2,44 +2,23 @@ import { render, screen } from '@testing-library/react'
 import type { ReactNode } from 'react'
 import { MemoryRouter } from 'react-router-dom'
 
-import { AboutPage } from './AboutPage'
-import { DonatePage } from './DonatePage'
-import { HomePage } from './HomePage'
+import { VisitPage } from './VisitPage'
 
 function renderPage(page: ReactNode) {
   return render(<MemoryRouter>{page}</MemoryRouter>)
 }
 
 describe('confirmed mosque content', () => {
-  it('renders the mosque-controlled Jummah time on Home', () => {
-    renderPage(<HomePage />)
-
-    expect(
-      screen.getByRole('heading', { name: 'Jummah Prayer' }),
-    ).toBeInTheDocument()
-    expect(screen.getByText('Friday')).toBeInTheDocument()
-    expect(screen.getByText('1:00 PM')).toBeInTheDocument()
-  })
-
-  it('renders the approved public email as a mail link on Home', () => {
-    renderPage(<HomePage />)
-
-    expect(
-      screen.getByRole('link', { name: 'delanomosque@gmail.com' }),
-    ).toHaveAttribute('href', 'mailto:delanomosque@gmail.com')
-  })
-
-  it('uses shared confirmed mosque information on About', () => {
-    renderPage(<AboutPage />)
+  it('keeps visitor and contact information together on Visit', () => {
+    const { container } = renderPage(<VisitPage />)
 
     expect(
       screen.getByRole('heading', {
-        name: 'About Abu Bakr Al-Siddiq Mosque',
+        name: 'Plan Your Visit',
       }),
     ).toBeInTheDocument()
-    expect(
-      screen.getByText('1130 Kensington St, Delano, CA 93215'),
-    ).toBeInTheDocument()
+    expect(screen.getByText('1130 Kensington St')).toBeInTheDocument()
+    expect(screen.getByText('Delano, CA 93215')).toBeInTheDocument()
     expect(
       screen.getByText('A separate entrance is available for women.'),
     ).toBeInTheDocument()
@@ -49,21 +28,31 @@ describe('confirmed mosque content', () => {
     expect(
       screen.getByRole('link', { name: 'delanomosque@gmail.com' }),
     ).toHaveAttribute('href', 'mailto:delanomosque@gmail.com')
-  })
-
-  it('renders the safe pending Givebutter setup state without a donation form', () => {
-    const { container } = renderPage(<DonatePage />)
-
     expect(
-      screen.getByRole('heading', {
-        name: 'Support Abu Bakr Al-Siddiq Mosque',
-      }),
-    ).toBeInTheDocument()
+      screen.getByRole('link', { name: 'Get Directions' }),
+    ).toHaveAttribute(
+      'href',
+      'https://www.google.com/maps/dir/?api=1&destination=1130%20Kensington%20St%2C%20Delano%2C%20CA%2093215',
+    )
     expect(
-      screen.getByText('Online giving through Givebutter is being prepared.'),
+      screen.getByRole('link', { name: 'Get Directions' }),
+    ).toHaveAttribute('target', '_blank')
+    expect(
+      container.querySelector('.tabler-icon-gender-female'),
     ).toBeInTheDocument()
-    expect(container.querySelector('form')).not.toBeInTheDocument()
-    expect(container.querySelector('input')).not.toBeInTheDocument()
-    expect(container.querySelector('script')).not.toBeInTheDocument()
+    const mapFrame = container.querySelector('iframe')
+
+    if (mapFrame) {
+      expect(mapFrame).toHaveAttribute(
+        'title',
+        'Map showing Abu Bakr Al-Siddiq Mosque in Delano, California',
+      )
+    } else {
+      expect(
+        screen.getByText(
+          'Map preview is available when the Google Maps key is configured.',
+        ),
+      ).toBeInTheDocument()
+    }
   })
 })

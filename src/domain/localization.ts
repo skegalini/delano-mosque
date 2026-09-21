@@ -4,6 +4,24 @@ export type SupportedLanguage = (typeof supportedLanguages)[number]
 
 export type LocalizedContent = Partial<Record<SupportedLanguage, string>>
 
+/**
+ * Endonyms — each language written in itself, the usual convention for a
+ * language picker so a reader can find their own language whatever the
+ * current locale. Identical in every locale, so these are data, not copy.
+ */
+export const supportedLanguageNames = {
+  en: 'English',
+  es: 'Español',
+  ar: 'العربية',
+} as const satisfies Record<SupportedLanguage, string>
+
+/** Compact labels for the collapsed mobile header. */
+export const supportedLanguageAbbreviations = {
+  en: 'EN',
+  es: 'ES',
+  ar: 'AR',
+} as const satisfies Record<SupportedLanguage, string>
+
 export function normalizeSupportedLanguage(
   language: string,
 ): SupportedLanguage | null {
@@ -12,6 +30,25 @@ export function normalizeSupportedLanguage(
   return supportedLanguages.includes(normalizedLanguage as SupportedLanguage)
     ? (normalizedLanguage as SupportedLanguage)
     : null
+}
+
+/**
+ * First supported language in an ordered preference list, e.g. the value of
+ * `navigator.languages`. Regional variants are matched on their language
+ * subtag, so `ar-SA`, `es-MX` and `en-GB` resolve to `ar`, `es` and `en`.
+ */
+export function resolvePreferredLanguage(
+  preferences: readonly string[],
+): SupportedLanguage | null {
+  for (const preference of preferences) {
+    const language = normalizeSupportedLanguage(preference)
+
+    if (language) {
+      return language
+    }
+  }
+
+  return null
 }
 
 export function resolveLocalizedContent(

@@ -9,7 +9,7 @@ export function PageShell({ children, title }: PageShellProps) {
   return (
     <section className="max-w-3xl" aria-labelledby="page-title">
       <h1
-        className="text-3xl font-semibold tracking-tight text-[var(--color-masjid-green-deep)] sm:text-4xl"
+        className="font-heading text-3xl text-[var(--color-heading)] sm:text-4xl"
         id="page-title"
       >
         {title}

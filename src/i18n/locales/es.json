@@ -4,16 +4,26 @@
   },
   "navigation": {
     "home": "Inicio",
+    "visit": "Visita",
+    "prayer": "Horarios de oración",
     "history": "Historia",
     "programs": "Programas",
     "donate": "Donar",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "openMenu": "Abrir menú de navegación",
+    "closeMenu": "Cerrar menú de navegación"
   },
   "pages": {
     "home": {
       "title": "Bienvenidos",
       "body": "La base del sitio web público está preparada. El contenido se añadirá en una fase posterior.",
+      "hero": {
+        "title": "Una casa de adoración, aprendizaje y comunidad.",
+        "location": "Delano, California",
+        "mapsLabel": "Ver Abu Bakr Al-Siddiq Mosque en Google Maps"
+      },
       "prayerTimes": {
+        "eyebrow": "Horario de oración",
         "title": "Horarios de oración de hoy",
         "labels": {
           "fajr": "Fajr",
@@ -23,14 +33,96 @@
           "maghrib": "Maghrib",
           "isha": "Isha"
         }
+      },
+      "jummah": {
+        "title": "Oración del Yumu'ah",
+        "days": {
+          "friday": "Viernes",
+          "fridays": "Viernes"
+        },
+        "schedule": "{{day}} a las {{time}}"
       }
     },
-    "history": { "title": "Historia" },
-    "programs": { "title": "Programas" },
-    "donate": { "title": "Donar" },
-    "about": { "title": "Acerca de" }
+    "visit": {
+      "title": "Visita",
+      "heading": "Planifica tu visita"
+    },
+    "history": {
+      "title": "Historia",
+      "placeholder": "La historia de la mezquita y de su comunidad se compartirá aquí."
+    },
+    "programs": {
+      "title": "Programas"
+    },
+    "donate": {
+      "title": "Donar"
+    },
+    "about": {
+      "title": "Acerca de",
+      "heading": "Acerca de {{mosqueName}}",
+      "history": {
+        "title": "Nuestra Historia",
+        "heading": "Arraigados en Delano",
+        "featuredPhotos": "Fotografías destacadas",
+        "featuredPhotoPlaceholder": "Fotografía histórica destacada",
+        "featuredPhotoAlts": {
+          "img584": "Miembros de la comunidad reunidos alrededor de una comida compartida",
+          "img553": "Un adulto y varios niños eligiendo libros en un aula",
+          "img557": "Estudiantes practicando árabe en una pizarra",
+          "img586": "Un miembro de la comunidad bajo las parras"
+        },
+        "sections": {
+          "rooted": {
+            "body": "La Mezquita Abu Bakr Al-Siddiq surgió de la comunidad yemení que comenzó a establecerse en el Valle de San Joaquín, California, durante las décadas de 1960 y 1970. Muchos llegaron para trabajar en la agricultura, mientras que otros decidieron quedarse, criar a sus familias y hacer de Delano su hogar. Con el tiempo, echó raíces una comunidad musulmana unida por la fe, la familia y la responsabilidad compartida de preservar su vida religiosa para la próxima generación."
+          },
+          "homes": {
+            "heading": "De los hogares a una mezquita",
+            "body": "Antes de contar con una mezquita permanente, los musulmanes de la zona se reunían para rezar en casas particulares, entre ellas la de Mohammed e Irma Abdullah, quienes desempeñaron un papel importante en la creación de un lugar de culto permanente para la comunidad. De aquellas primeras reuniones surgió el esfuerzo por establecer una mezquita propia, y alrededor del año 2000 se estableció la Mezquita Abu Bakr Al-Siddiq en Delano."
+          },
+          "namesake": {
+            "heading": "¿Por qué Abu Bakr Al-Siddiq?",
+            "body": "La mezquita recibió su nombre en honor a Abu Bakr al-Siddiq (que Allah esté complacido con él), cercano compañero del Profeta Muhammad ﷺ y primer califa de la comunidad musulmana. Conocido por el título al-Siddiq, “el Veraz”, es recordado por su fe, lealtad, generosidad y firme apoyo al Islam."
+          },
+          "worship": {
+            "heading": "Un lugar para adorar y aprender",
+            "body": "Desde sus comienzos, la mezquita ha sido más que un lugar para las cinco oraciones diarias y la oración del viernes. También ha servido como madrasa y centro de enseñanza islámica, donde niños y adultos estudian su fe, aprenden el Corán y se reúnen como comunidad. Hoy, la Mezquita Abu Bakr Al-Siddiq continúa sirviendo a los musulmanes de Delano y manteniendo vivo el legado de fe y comunidad que echó raíces aquí hace generaciones."
+          }
+        }
+      },
+      "album": {
+        "eyebrow": "Vida comunitaria",
+        "subheading": "Delano · 2012",
+        "description": "Momentos de la vida en la mezquita, el aprendizaje, el trabajo, la familia y la comunidad en Delano.",
+        "label": "Álbum comunitario de 2012",
+        "previousPhoto": "Fotografía anterior",
+        "nextPhoto": "Fotografía siguiente",
+        "photoAlt": "Fotografía comunitaria {{position}} de {{total}}, Delano, 2012",
+        "photoCredit": "Fotografías de 2012, por cortesía de Jonathan Friedlander."
+      },
+      "documentary": {
+        "eyebrow": "Historia oral / Documental",
+        "heading": "Una historia preservada en el cine",
+        "description": "Conozca más sobre la historia de la comunidad musulmana yemení de Delano a través del documental de Erik Friedl.",
+        "videoTitle": "Documental de Erik Friedl sobre la comunidad musulmana yemení de Delano",
+        "credit": "Documental por cortesía de Erik Friedl (2012).",
+        "watchOnYoutube": "Ver en YouTube"
+      }
+    }
+  },
+  "visitorInformation": {
+    "title": "Visita y contacto",
+    "address": "Dirección",
+    "getDirections": "Cómo llegar",
+    "womensEntrance": "Entrada para mujeres",
+    "womensEntranceAvailable": "Hay una entrada separada disponible para mujeres.",
+    "wudu": "Wudu",
+    "wuduAvailable": "Hay instalaciones disponibles para hacer wudu.",
+    "contact": "Contacto",
+    "mapHeading": "Mapa de ubicación",
+    "mapTitle": "Mapa de la mezquita Abu Bakr Al-Siddiq en Delano, California",
+    "mapUnavailable": "La vista previa del mapa estará disponible cuando se configure la clave de Google Maps."
   },
   "footer": {
-    "status": "Fundación del proyecto: Fase 0"
+    "status": "Base visual de la Fase 1"
   }
 }

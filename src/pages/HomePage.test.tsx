@@ -40,10 +40,34 @@ describe('Home prayer times', () => {
     )
 
     expect(
+      screen.getByRole('link', {
+        name: 'View Abu Bakr Al-Siddiq Mosque in Google Maps',
+      }),
+    ).toHaveAttribute(
+      'href',
+      'https://www.google.com/maps/search/?api=1&query=Abu+Bakr+Al-Siddiq+Mosque+1130+Kensington+St%2C+Delano%2C+CA+93215',
+    )
+    expect(
+      screen.getByRole('link', {
+        name: 'View Abu Bakr Al-Siddiq Mosque in Google Maps',
+      }),
+    ).toHaveAttribute('target', '_blank')
+
+    // The hero carries only the Prayer Times call to action; donating lives
+    // in the header.
+    expect(
+      screen.queryByRole('button', { name: 'Donate' }),
+    ).not.toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /prayer times/i })).toHaveAttribute(
+      'href',
+      '#prayer-times',
+    )
+
+    expect(
       screen.getByText('Loading calculated prayer times…'),
     ).toBeInTheDocument()
     await act(async () => {
-      await vi.runAllTimersAsync()
+      await vi.advanceTimersByTimeAsync(0)
     })
 
     expect(screen.getByText('4:51 AM')).toBeInTheDocument()
@@ -51,6 +75,38 @@ describe('Home prayer times', () => {
     expect(screen.getByText('12:59 PM')).toBeInTheDocument()
     expect(screen.getByText('7:39 PM')).toBeInTheDocument()
     expect(screen.getByText('Thursday, August 27')).toBeInTheDocument()
+  })
+
+  it("shows the Jumu'ah time in the hero, under the primary actions", async () => {
+    const { container } = render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    )
+
+    const note = container.querySelector<HTMLElement>('.jummah-note')
+    expect(note).toBeInTheDocument()
+    expect(note).toHaveTextContent("Jumu'ah Prayer")
+    expect(note).toHaveTextContent('Fridays at 1:00 PM')
+
+    // It belongs to the hero, after the two primary buttons.
+    const actions = container.querySelector<HTMLElement>('.home-hero__actions')
+    expect(
+      container.querySelector<HTMLElement>('.home-hero__content'),
+    ).toContainElement(note)
+    expect(
+      actions!.compareDocumentPosition(note!) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy()
+
+    // Stated once, and no longer inside the prayer-times section.
+    expect(container.querySelectorAll('.jummah-note')).toHaveLength(1)
+    expect(
+      container.querySelector('.prayer-times .jummah-note'),
+    ).not.toBeInTheDocument()
+
+    // It must not depend on the prayer-time request resolving.
+    expect(await screen.findByRole('alert')).toBeInTheDocument()
   })
 
   it('shows a visitor-safe unavailable state when no prayer data can load', async () => {

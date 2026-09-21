@@ -4,11 +4,11 @@ import { AdminPage } from '../admin/AdminPage'
 import { PublicLayout } from '../components/layout/PublicLayout'
 import { DisplayPage } from '../display/DisplayPage'
 import { AboutPage } from '../pages/AboutPage'
-import { DonatePage } from '../pages/DonatePage'
 import { HistoryPage } from '../pages/HistoryPage'
 import { HomePage } from '../pages/HomePage'
 import { NotFoundPage } from '../pages/NotFoundPage'
 import { ProgramsPage } from '../pages/ProgramsPage'
+import { VisitPage } from '../pages/VisitPage'
 
 export const routes: RouteObject[] = [
   {
@@ -16,11 +16,18 @@ export const routes: RouteObject[] = [
     children: [
       { index: true, element: <HomePage /> },
       { path: 'history', element: <HistoryPage /> },
+      { path: 'visit', element: <VisitPage /> },
       { path: 'programs', element: <ProgramsPage /> },
-      { path: 'donate', element: <DonatePage /> },
       { path: 'about', element: <AboutPage /> },
       { path: '*', element: <NotFoundPage /> },
     ],
+  },
+  {
+    path: 'design/borders',
+    lazy: async () => {
+      const { BorderDesignLab } = await import('../pages/BorderDesignLab')
+      return { Component: BorderDesignLab }
+    },
   },
   { path: 'display', element: <DisplayPage /> },
   { path: 'admin', element: <AdminPage /> },

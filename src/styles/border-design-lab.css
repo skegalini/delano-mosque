@@ -1,0 +1,228 @@
+.border-lab {
+  min-height: 100vh;
+  overflow-x: hidden;
+  background: #eee8db;
+  color: #17332d;
+  font-family: var(--font-ui);
+  padding: clamp(2rem, 5vw, 5rem) max(1rem, calc((100vw - 78rem) / 2));
+}
+
+.border-lab__header {
+  max-width: 50rem;
+  margin-bottom: 4.5rem;
+}
+
+.border-lab__eyebrow {
+  margin: 0 0 0.7rem;
+  color: #9b681f;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.border-lab :where(h1, h2, h3, p) {
+  margin-block-start: 0;
+}
+
+.border-lab h1 {
+  margin-block-end: 1rem;
+  font-family: var(--font-display);
+  font-size: clamp(2.4rem, 5vw, 4.4rem);
+  line-height: 1.04;
+}
+
+.border-lab__header > p:last-child,
+.border-lab__section-heading p {
+  color: #53635e;
+  line-height: 1.65;
+}
+
+.border-lab__section {
+  margin-top: clamp(3.5rem, 8vw, 6.5rem);
+}
+
+.border-lab__section-heading {
+  display: flex;
+  max-width: 52rem;
+  align-items: flex-start;
+  gap: 1rem;
+  margin-bottom: 1.35rem;
+}
+
+.border-lab__section-heading > span {
+  display: grid;
+  width: 2.2rem;
+  height: 2.2rem;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgb(155 104 31 / 40%);
+  border-radius: 50%;
+  color: #9b681f;
+  font-size: 0.65rem;
+  font-weight: 800;
+}
+
+.border-lab__section-heading h2 {
+  margin-bottom: 0.3rem;
+  font-size: 1.05rem;
+}
+
+.border-lab__section-heading p {
+  margin-bottom: 0;
+  font-size: 0.86rem;
+}
+
+.border-lab__surface--dark {
+  --twelve-fold-stroke: rgb(229 200 145 / 62%);
+  --twelve-fold-rail: rgb(229 200 145 / 50%);
+  background: #09130f;
+  color: #f3e9cf;
+}
+
+.border-lab__surface--light {
+  --twelve-fold-stroke: rgb(173 116 31 / 40%);
+  --twelve-fold-rail: rgb(173 116 31 / 34%);
+  background: #faf7f0;
+  color: #17332d;
+}
+
+.twelve-fold-pattern {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.twelve-fold-pattern path {
+  fill: none;
+  stroke: var(--twelve-fold-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0.72;
+  vector-effect: non-scaling-stroke;
+}
+
+.twelve-fold-crop {
+  position: relative;
+  width: 100%;
+  height: var(--crop-height);
+  overflow: hidden;
+}
+
+.twelve-fold-crop--rails {
+  border-block: 1px solid var(--twelve-fold-rail);
+}
+
+.border-lab__tile-wrap {
+  display: grid;
+  min-height: 26rem;
+  place-items: center;
+  padding: 2.5rem;
+}
+
+.border-lab__tile {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1;
+  border: 1px solid rgb(229 200 145 / 30%);
+  background: #0d1a15;
+}
+
+.border-lab__field {
+  position: relative;
+  height: 18rem;
+  overflow: hidden;
+}
+
+.border-lab__matrix {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  overflow: hidden;
+  border: 1px solid rgb(23 51 45 / 14%);
+  background: rgb(229 200 145 / 18%);
+}
+
+.border-lab__crop-card {
+  min-width: 0;
+  padding: 1.25rem 0 1.6rem;
+}
+
+.border-lab__crop-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin: 0 1.25rem 1.25rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.border-lab__crop-meta span {
+  color: rgb(243 233 207 / 62%);
+}
+
+.border-lab__themes {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  border: 1px solid rgb(23 51 45 / 14%);
+}
+
+.border-lab__theme {
+  min-width: 0;
+  padding: 2.25rem 0 2.75rem;
+}
+
+.border-lab__theme h3,
+.border-lab__theme p {
+  margin-inline: 1.5rem;
+}
+
+.border-lab__theme h3 {
+  margin-bottom: 2rem;
+  font-size: 0.9rem;
+}
+
+.border-lab__theme p {
+  margin-top: 1.5rem;
+  margin-bottom: 0.65rem;
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  opacity: 0.72;
+  text-transform: uppercase;
+}
+
+.border-lab__width-stack {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.border-lab__width-study {
+  max-width: 100%;
+  padding-block: 1.75rem 2.25rem;
+  border: 1px solid rgb(23 51 45 / 14%);
+}
+
+.border-lab__width-study > span {
+  display: block;
+  margin: 0 1rem 1.25rem;
+  color: #53635e;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 48rem) {
+  .border-lab__matrix,
+  .border-lab__themes {
+    grid-template-columns: 1fr;
+  }
+
+  .border-lab__tile-wrap {
+    min-height: 0;
+    padding: 1rem;
+  }
+}

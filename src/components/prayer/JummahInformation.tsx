@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next'
 
+import { JummahCongregationIcon } from '../icons/JummahCongregationIcon'
 import { mosqueData } from '../../data/mosque'
 import { formatClockTime } from '../../utils/clock'
 
 const jummahDayLabels = {
-  friday: 'pages.home.jummah.days.friday',
+  friday: 'pages.home.jummah.days.fridays',
 } as const
 
 export function JummahInformation() {
@@ -13,16 +14,21 @@ export function JummahInformation() {
   const { jummah } = mosqueData
 
   return (
-    <section className="max-w-3xl border-t border-black/10 pt-6">
-      <h2 className="text-xl font-semibold text-[var(--color-masjid-green-deep)]">
-        {t('pages.home.jummah.title')}
-      </h2>
-      <p className="mt-2 text-[var(--color-text-muted)]">
-        {t(jummahDayLabels[jummah.day])}
-      </p>
-      <p className="mt-1 text-lg font-semibold tabular-nums">
-        {formatClockTime(jummah.time, locale)}
-      </p>
-    </section>
+    <p className="jummah-note">
+      <JummahCongregationIcon
+        aria-hidden="true"
+        className="jummah-note__icon"
+      />
+      <span className="jummah-note__label">{t('pages.home.jummah.title')}</span>
+      <span aria-hidden="true" className="jummah-note__separator">
+        ·
+      </span>
+      <span className="jummah-note__schedule" dir="auto">
+        {t('pages.home.jummah.schedule', {
+          day: t(jummahDayLabels[jummah.day]),
+          time: formatClockTime(jummah.time, locale),
+        })}
+      </span>
+    </p>
   )
 }

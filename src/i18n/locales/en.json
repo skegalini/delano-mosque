@@ -6,17 +6,27 @@
   "navigation": {
     "label": "Primary navigation",
     "home": "Home",
+    "visit": "Visit",
+    "prayer": "Prayer Times",
     "history": "History",
     "programs": "Programs",
     "donate": "Donate",
-    "about": "About"
+    "about": "About",
+    "openMenu": "Open navigation menu",
+    "closeMenu": "Close navigation menu"
   },
   "pages": {
     "placeholder": "This page is part of the Phase 0 foundation. Content will be developed in a later phase.",
     "home": {
       "title": "Welcome",
       "body": "The public website foundation is in place. Mosque information and community content will be added in a later phase.",
+      "hero": {
+        "title": "A House of Worship, Learning, and Community.",
+        "location": "Delano, California",
+        "mapsLabel": "View Abu Bakr Al-Siddiq Mosque in Google Maps"
+      },
       "prayerTimes": {
+        "eyebrow": "Prayer schedule",
         "title": "Today's Prayer Times",
         "loading": "Loading calculated prayer times…",
         "unavailable": "Prayer times are temporarily unavailable.",
@@ -31,10 +41,12 @@
         }
       },
       "jummah": {
-        "title": "Jummah Prayer",
+        "title": "Jumu'ah Prayer",
         "days": {
-          "friday": "Friday"
-        }
+          "friday": "Friday",
+          "fridays": "Fridays"
+        },
+        "schedule": "{{day}} at {{time}}"
       },
       "quickDestinations": {
         "title": "Explore",
@@ -51,10 +63,66 @@
     },
     "about": {
       "title": "About",
-      "heading": "About {{mosqueName}}"
+      "heading": "About {{mosqueName}}",
+      "history": {
+        "title": "Our History",
+        "heading": "Rooted in Delano",
+        "featuredPhotos": "Featured photos",
+        "featuredPhotoPlaceholder": "Featured archival photograph",
+        "featuredPhotoAlts": {
+          "img584": "Community members gathered around a shared meal",
+          "img553": "An adult and children selecting books in a classroom",
+          "img557": "Students practicing Arabic at a chalkboard",
+          "img586": "A community member standing beneath grapevines"
+        },
+        "sections": {
+          "rooted": {
+            "body": "Abu Bakr Al-Siddiq Mosque grew from the Yemeni community that began settling in California’s San Joaquin Valley during the 1960s and 1970s. Many came to work in agriculture, while others eventually chose to remain, raise families, and make Delano their home. Over time, a close-knit Muslim community took root, held together by faith, family, and a shared responsibility to preserve their religious life for the next generation."
+          },
+          "homes": {
+            "heading": "From Homes to a Masjid",
+            "body": "Before there was a permanent mosque, local Muslims gathered for prayer in family homes, including the home of Mohammed and Irma Abdullah, who were among those instrumental in establishing a lasting place of worship for the community. From these early gatherings came the effort to create a permanent masjid, and around 2000, Abu Bakr Al-Siddiq Mosque was established in Delano."
+          },
+          "namesake": {
+            "heading": "Why Abu Bakr Al-Siddiq?",
+            "body": "The mosque was named in honor of Abu Bakr al-Siddiq (may Allah be pleased with him), the close companion of the Prophet Muhammad ﷺ and the first caliph of the Muslim community. Known by the title al-Siddiq, “the Truthful,” he is remembered for his faith, loyalty, generosity, and steadfast support of Islam."
+          },
+          "worship": {
+            "heading": "A Place to Worship and Learn",
+            "body": "From its beginnings, the mosque has been more than a place for the daily prayers and Jumu’ah. It has also served as a madrasa and center for Islamic learning, where children and adults study their faith, learn the Qur’an, and gather as a community. Today, Abu Bakr Al-Siddiq Mosque continues to serve Delano’s Muslims while carrying forward the faith and community that first took root here generations ago."
+          }
+        }
+      },
+      "album": {
+        "eyebrow": "Community Life",
+        "subheading": "Delano · 2012",
+        "description": "Moments from mosque life, learning, work, family, and community in Delano.",
+        "label": "2012 community photo album",
+        "previousPhoto": "Previous photograph",
+        "nextPhoto": "Next photograph",
+        "photoAlt": "Community photograph {{position}} of {{total}}, Delano, 2012",
+        "photoCredit": "Photos from 2012, courtesy of Jonathan Friedlander."
+      },
+      "documentary": {
+        "eyebrow": "Documentary",
+        "heading": "A Story Preserved on Film",
+        "description": "Learn more about the history of Delano’s Yemeni Muslim community through Erik Friedl’s documentary.",
+        "videoTitle": "Documentary about Delano’s Yemeni Muslim community by Erik Friedl",
+        "credit": "Documentary courtesy of Erik Friedl (2012).",
+        "watchOnYoutube": "Watch on YouTube"
+      }
     },
-    "history": { "title": "History" },
-    "programs": { "title": "Programs" },
+    "visit": {
+      "title": "Visit",
+      "heading": "Plan Your Visit"
+    },
+    "history": {
+      "title": "History",
+      "placeholder": "The mosque's history and community story will be shared here."
+    },
+    "programs": {
+      "title": "Programs"
+    },
     "donate": {
       "title": "Donate",
       "heading": "Support {{mosqueName}}",
@@ -81,13 +149,17 @@
   "visitorInformation": {
     "title": "Visit and Contact",
     "address": "Address",
+    "getDirections": "Get Directions",
     "womensEntrance": "Women's Entrance",
     "womensEntranceAvailable": "A separate entrance is available for women.",
     "wudu": "Wudu",
     "wuduAvailable": "Wudu facilities are available.",
-    "contact": "Contact"
+    "contact": "Contact",
+    "mapHeading": "Location map",
+    "mapTitle": "Map showing Abu Bakr Al-Siddiq Mosque in Delano, California",
+    "mapUnavailable": "Map preview is available when the Google Maps key is configured."
   },
   "footer": {
-    "status": "Phase 0 project foundation"
+    "status": "Phase 1 visual foundation"
   }
 }

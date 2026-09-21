@@ -142,3 +142,10 @@ pnpm lint
 pnpm typecheck
 pnpm test
 ```
+
+### Google Maps embed
+
+Copy `.env.example` to `.env` and set `VITE_GOOGLE_MAPS_EMBED_API_KEY` to enable
+the fixed location map on the About page. Restrict the browser key to the
+deployed site origin and the Google Maps Embed API. The directions link works
+without an API key.
