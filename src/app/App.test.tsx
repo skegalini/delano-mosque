@@ -218,9 +218,18 @@ describe('application foundation', () => {
     const user = userEvent.setup()
     renderRoute('/')
 
+    const primaryNavigation = screen.getByRole('navigation', {
+      name: 'Primary navigation',
+    })
+    const languageControl = screen.getByRole('combobox', { name: 'Language' })
+    const donateButton = screen.getByRole('button', { name: 'Donate' })
     const menuButton = screen.getByRole('button', {
       name: 'Open navigation menu',
     })
+
+    expect(primaryNavigation).not.toContainElement(languageControl)
+    expect(primaryNavigation).not.toContainElement(donateButton)
+    expect(document.querySelectorAll('#language')).toHaveLength(1)
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
 
     await user.click(menuButton)
