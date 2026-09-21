@@ -7,7 +7,7 @@ export function ProgramsPage() {
 
   return (
     <PageShell title={t('pages.programs.title')}>
-      {t('pages.placeholder')}
+      {t('pages.programs.placeholder')}
     </PageShell>
   )
 }
