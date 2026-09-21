@@ -906,6 +906,26 @@
   color: var(--color-text-muted);
 }
 
+.history-page__documentary-credit-link {
+  color: inherit;
+  font-weight: 700;
+  text-decoration-color: color-mix(in srgb, var(--color-gold) 65%, transparent);
+  text-decoration-line: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+  transition: color 160ms ease;
+}
+
+.history-page__documentary-credit-link:hover {
+  color: var(--color-gold);
+}
+
+.history-page__documentary-credit-link:focus-visible {
+  border-radius: 0.15rem;
+  outline: 2px solid var(--color-gold);
+  outline-offset: 0.18rem;
+}
+
 .history-page__youtube-link {
   display: inline-flex;
   align-items: center;
