@@ -1,4 +1,4 @@
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import {
   FeaturedHistoryMedia,
@@ -207,7 +207,19 @@ export function AboutPage() {
 
         <div className="history-page__documentary-meta">
           <p className="history-page__documentary-credit">
-            {t('pages.about.documentary.credit')}
+            <Trans
+              i18nKey="pages.about.documentary.credit"
+              components={{
+                erik: (
+                  <a
+                    className="history-page__documentary-credit-link"
+                    href="https://erikfriedl.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  />
+                ),
+              }}
+            />
           </p>
           <a
             className="history-page__youtube-link"
