@@ -215,7 +215,15 @@
   gap: 0.75rem;
 }
 
+.language-control {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+}
+
 .language-control select {
+  box-sizing: border-box;
   min-height: 2.5rem;
   border: 1px solid var(--color-border);
   border-radius: var(--radius-pill);
@@ -226,8 +234,10 @@
   font: inherit;
   font-size: 0.7rem;
   font-weight: 800;
+  line-height: 1;
   padding: 0.5rem 0.75rem;
   text-align: center;
+  text-align-last: center;
 }
 
 .button {
@@ -2139,9 +2149,12 @@
   }
 
   .language-control select {
+    width: 2.6rem;
+    height: 2.6rem;
     min-width: 2.6rem;
-    min-height: 2.4rem;
-    padding: 0.45rem 0.55rem;
+    min-height: 2.6rem;
+    padding: 0;
+    border-radius: 50%;
   }
 
   .site-header__donate {
@@ -2236,9 +2249,11 @@
   }
 
   .language-control select {
+    width: 2.45rem;
+    height: 2.45rem;
     min-width: 2.45rem;
-    min-height: 2.3rem;
-    padding-inline: 0.45rem;
+    min-height: 2.45rem;
+    padding: 0;
     font-size: 0.66rem;
   }
 
