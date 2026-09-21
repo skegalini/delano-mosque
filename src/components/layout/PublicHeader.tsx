@@ -46,45 +46,30 @@ export function PublicHeader() {
           />
         </Link>
 
-        <button
-          aria-controls="primary-navigation"
-          aria-expanded={isMenuOpen}
-          aria-label={
-            isMenuOpen ? t('navigation.closeMenu') : t('navigation.openMenu')
-          }
-          className="menu-toggle"
-          onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
-          type="button"
-        >
-          <span aria-hidden="true" className="menu-toggle__lines">
-            <span />
-            <span />
-            <span />
-          </span>
-        </button>
-
-        <div
-          className={`site-header__navigation${isMenuOpen ? ' is-open' : ''}`}
-          id="primary-navigation"
-        >
-          <nav aria-label={t('navigation.label')}>
-            <ul className="site-nav">
-              {navigation.map(({ end, label, to }) => (
-                <li key={to}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `site-nav__link${isActive ? ' is-active' : ''}`
-                    }
-                    end={end}
-                    onClick={() => setIsMenuOpen(false)}
-                    to={to}
-                  >
-                    {t(label)}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
+        <div className="site-header__right">
+          <div
+            className={`site-header__navigation${isMenuOpen ? ' is-open' : ''}`}
+            id="primary-navigation"
+          >
+            <nav aria-label={t('navigation.label')}>
+              <ul className="site-nav">
+                {navigation.map(({ end, label, to }) => (
+                  <li key={to}>
+                    <NavLink
+                      className={({ isActive }) =>
+                        `site-nav__link${isActive ? ' is-active' : ''}`
+                      }
+                      end={end}
+                      onClick={() => setIsMenuOpen(false)}
+                      to={to}
+                    >
+                      {t(label)}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
+            </nav>
+          </div>
 
           <div className="site-header__actions">
             <label className="language-control" htmlFor="language">
@@ -106,6 +91,7 @@ export function PublicHeader() {
                 ))}
               </select>
             </label>
+
             <button
               className="button button--donate site-header__donate"
               data-gb-account="pmetkEb39XTuRaXB"
@@ -116,6 +102,23 @@ export function PublicHeader() {
               {t('navigation.donate')}
             </button>
           </div>
+
+          <button
+            aria-controls="primary-navigation"
+            aria-expanded={isMenuOpen}
+            aria-label={
+              isMenuOpen ? t('navigation.closeMenu') : t('navigation.openMenu')
+            }
+            className="menu-toggle"
+            onClick={() => setIsMenuOpen((isOpen) => !isOpen)}
+            type="button"
+          >
+            <span aria-hidden="true" className="menu-toggle__lines">
+              <span />
+              <span />
+              <span />
+            </span>
+          </button>
         </div>
       </div>
       <GeometricBorder variant="nav" />
