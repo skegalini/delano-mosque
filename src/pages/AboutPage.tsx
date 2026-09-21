@@ -164,15 +164,13 @@ export function AboutPage() {
             label={t('pages.about.album.label')}
             previousLabel={t('pages.about.album.previousPhoto')}
             nextLabel={t('pages.about.album.nextPhoto')}
+            credit={t('pages.about.album.photoCredit')}
             getPhotoAlt={(position, total) =>
               t('pages.about.album.photoAlt', { position, total })
             }
           />
         </div>
 
-        <p className="history-page__photo-credit">
-          {t('pages.about.album.photoCredit')}
-        </p>
       </section>
 
       <section
