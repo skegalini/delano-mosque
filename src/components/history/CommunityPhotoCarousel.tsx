@@ -6,6 +6,7 @@ import {
   useState,
   type CSSProperties,
   type KeyboardEvent,
+  type ReactNode,
 } from 'react'
 
 import type { HistoricalArchivePhoto } from '../../data/historyArchive'
@@ -15,6 +16,7 @@ type CommunityPhotoCarouselProps = {
   label: string
   previousLabel: string
   nextLabel: string
+  credit?: ReactNode
   getPhotoAlt: (position: number, total: number) => string
 }
 
@@ -32,6 +34,7 @@ export function CommunityPhotoCarousel({
   label,
   previousLabel,
   nextLabel,
+  credit,
   getPhotoAlt,
 }: CommunityPhotoCarouselProps) {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -45,6 +48,7 @@ export function CommunityPhotoCarousel({
   const stageStyle = activePhoto
     ? ({
         '--carousel-active-ratio': `${activePhoto.width} / ${activePhoto.height}`,
+        '--carousel-active-ratio-number': activePhoto.width / activePhoto.height,
       } as CSSProperties)
     : undefined
 
@@ -229,6 +233,12 @@ export function CommunityPhotoCarousel({
       <p className="community-photo-carousel__position" aria-live="polite">
         {photos.length === 0 ? 0 : currentIndex + 1} / {photos.length}
       </p>
+
+      {credit ? (
+        <p className="community-photo-carousel__credit" style={stageStyle}>
+          {credit}
+        </p>
+      ) : null}
     </div>
   )
 }
