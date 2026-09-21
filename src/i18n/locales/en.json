@@ -121,7 +121,8 @@
       "placeholder": "The mosque's history and community story will be shared here."
     },
     "programs": {
-      "title": "Programs"
+      "title": "Programs",
+      "placeholder": "Future mosque programs and community activities will appear here."
     },
     "donate": {
       "title": "Donate",
