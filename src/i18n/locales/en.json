@@ -8,7 +8,6 @@
     "home": "Home",
     "visit": "Visit",
     "prayer": "Prayer Times",
-    "history": "History",
     "programs": "Programs",
     "donate": "Donate",
     "about": "About",
@@ -16,7 +15,6 @@
     "closeMenu": "Close navigation menu"
   },
   "pages": {
-    "placeholder": "This page is part of the Phase 0 foundation. Content will be developed in a later phase.",
     "home": {
       "title": "Welcome",
       "body": "The public website foundation is in place. Mosque information and community content will be added in a later phase.",
@@ -116,10 +114,6 @@
       "title": "Visit",
       "heading": "Plan Your Visit"
     },
-    "history": {
-      "title": "History",
-      "placeholder": "The mosque's history and community story will be shared here."
-    },
     "programs": {
       "title": "Programs",
       "placeholder": "Future mosque programs and community activities will appear here."
@@ -137,10 +131,6 @@
     "display": {
       "title": "Mosque Display",
       "body": "The in-building display has not yet been implemented."
-    },
-    "admin": {
-      "title": "Administration",
-      "body": "Administrative functionality has not yet been implemented."
     },
     "notFound": {
       "title": "Page not found",
@@ -161,6 +151,7 @@
     "mapUnavailable": "Map preview is available when the Google Maps key is configured."
   },
   "footer": {
-    "status": "Phase 1 visual foundation"
+    "location": "Delano, California",
+    "copyright": "© {{year}} {{mosqueName}}"
   }
 }

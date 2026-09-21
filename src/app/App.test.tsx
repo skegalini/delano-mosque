@@ -33,11 +33,16 @@ describe('application foundation', () => {
     ).toHaveAttribute('src', '/assets/brand/abu-bakr-logo-dark-clean.png')
   })
 
-  it('renders the history route', () => {
-    renderRoute('/history')
+  it.each(['/history', '/admin'])(
+    'renders the public not-found page for removed route %s',
+    (path) => {
+      renderRoute(path)
 
-    expect(screen.getByRole('heading', { name: 'History' })).toBeInTheDocument()
-  })
+      expect(
+        screen.getByRole('heading', { name: 'Page not found' }),
+      ).toBeInTheDocument()
+    },
+  )
 
   it('renders the approved About history in the selected language', async () => {
     const user = userEvent.setup()
@@ -125,8 +130,8 @@ describe('application foundation', () => {
       screen.getByText('صور من عام 2012، مقدمة بإذن من جوناثان فريدلاندر.'),
     ).toBeInTheDocument()
     expect(
-      screen.getByText('الفيلم الوثائقي مقدم بإذن من إريك فريدل (2012).'),
-    ).toBeInTheDocument()
+      screen.getByRole('link', { name: 'إريك فريدل' }).closest('p'),
+    ).toHaveTextContent('الفيلم الوثائقي مقدم بإذن من إريك فريدل (2012).')
     expect(document.documentElement).toHaveAttribute('dir', 'rtl')
   })
 
@@ -150,18 +155,17 @@ describe('application foundation', () => {
       '/programs',
       '/about',
     ])
-    const headerDonateButton = screen
-      .getAllByRole('button', { name: 'Donate' })
-      .find((button) => button.classList.contains('site-header__donate'))
+    const headerDonateButton = screen.getByRole('button', { name: 'Donate' })
 
     expect(headerDonateButton).toHaveAttribute(
       'data-gb-account',
       'pmetkEb39XTuRaXB',
     )
     expect(headerDonateButton).toHaveAttribute('data-gb-campaign', 'HUXSOZ')
-    // It is the only donate control, and it carries the hand-heart mark.
-    expect(screen.getAllByRole('button', { name: 'Donate' })).toHaveLength(1)
     expect(headerDonateButton?.querySelector('svg')).toBeInTheDocument()
+    expect(
+      screen.getByText(/© \d{4} Abu Bakr Al-Siddiq Mosque/),
+    ).toBeInTheDocument()
   })
 
   it('renders visitor information on the Visit route', () => {
@@ -195,6 +199,19 @@ describe('application foundation', () => {
         name: 'بيت للعبادة والعلم والمجتمع.',
       }),
     ).toBeInTheDocument()
+    expect(
+      screen.getByRole('link', { name: 'ديلانو، كاليفورنيا' }),
+    ).toBeInTheDocument()
+  })
+
+  it('keeps the display surface separate from the public layout', () => {
+    renderRoute('/display')
+
+    expect(
+      screen.getByRole('heading', { name: 'Mosque Display' }),
+    ).toBeInTheDocument()
+    expect(screen.queryByRole('navigation')).not.toBeInTheDocument()
+    expect(screen.queryByRole('contentinfo')).not.toBeInTheDocument()
   })
 
   it('exposes an accessible mobile navigation control', async () => {

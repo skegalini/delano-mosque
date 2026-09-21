@@ -6,7 +6,6 @@
     "home": "Inicio",
     "visit": "Visita",
     "prayer": "Horarios de oración",
-    "history": "Historia",
     "programs": "Programas",
     "donate": "Donar",
     "about": "Acerca de",
@@ -46,10 +45,6 @@
     "visit": {
       "title": "Visita",
       "heading": "Planifica tu visita"
-    },
-    "history": {
-      "title": "Historia",
-      "placeholder": "La historia de la mezquita y de su comunidad se compartirá aquí."
     },
     "programs": {
       "title": "Programas",
@@ -124,6 +119,7 @@
     "mapUnavailable": "La vista previa del mapa estará disponible cuando se configure la clave de Google Maps."
   },
   "footer": {
-    "status": "Base visual de la Fase 1"
+    "location": "Delano, California",
+    "copyright": "© {{year}} {{mosqueName}}"
   }
 }

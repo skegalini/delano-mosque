@@ -48,7 +48,8 @@ export function CommunityPhotoCarousel({
   const stageStyle = activePhoto
     ? ({
         '--carousel-active-ratio': `${activePhoto.width} / ${activePhoto.height}`,
-        '--carousel-active-ratio-number': activePhoto.width / activePhoto.height,
+        '--carousel-active-ratio-number':
+          activePhoto.width / activePhoto.height,
       } as CSSProperties)
     : undefined
 
