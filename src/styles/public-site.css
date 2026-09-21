@@ -150,6 +150,7 @@
   object-fit: contain;
 }
 
+.site-header__right,
 .site-header__navigation,
 .site-header__actions,
 .site-nav {
@@ -157,8 +158,13 @@
   align-items: center;
 }
 
-.site-header__navigation {
+.site-header__right {
   gap: clamp(1rem, 2.5vw, 2.5rem);
+  margin-inline-start: auto;
+}
+
+.site-header__navigation {
+  min-width: 0;
 }
 
 .site-nav {
@@ -1953,7 +1959,7 @@
 }
 
 @media (max-width: 68rem) {
-  .site-header__navigation {
+  .site-header__right {
     gap: 1rem;
   }
 
@@ -2074,6 +2080,7 @@
 
   .site-header__inner {
     min-height: 5.25rem;
+    gap: 0.65rem;
   }
 
   .site-brand__official-logo {
@@ -2081,8 +2088,15 @@
     height: 4.65rem;
   }
 
+  .site-header__right {
+    gap: 0.45rem;
+  }
+
   .menu-toggle {
     display: inline-flex;
+    width: 2.6rem;
+    height: 2.6rem;
+    flex: none;
   }
 
   .site-header__navigation {
@@ -2120,8 +2134,27 @@
   }
 
   .site-header__actions {
-    justify-content: space-between;
-    padding-top: 1rem;
+    flex: none;
+    gap: 0.4rem;
+  }
+
+  .language-control select {
+    min-width: 2.6rem;
+    min-height: 2.4rem;
+    padding: 0.45rem 0.55rem;
+  }
+
+  .site-header__donate {
+    min-width: 0;
+    min-height: 2.4rem;
+    gap: 0.32rem;
+    padding: 0.65rem 0.85rem;
+    font-size: 0.72rem;
+  }
+
+  .site-header__donate svg {
+    width: 0.9rem;
+    height: 0.9rem;
   }
 
   .home-hero {
@@ -2196,6 +2229,28 @@
   .site-brand__official-logo {
     width: 4.25rem;
     height: 4.25rem;
+  }
+
+  .site-header__right {
+    gap: 0.35rem;
+  }
+
+  .language-control select {
+    min-width: 2.45rem;
+    min-height: 2.3rem;
+    padding-inline: 0.45rem;
+    font-size: 0.66rem;
+  }
+
+  .site-header__donate {
+    min-height: 2.3rem;
+    padding-inline: 0.68rem;
+    font-size: 0.69rem;
+  }
+
+  .menu-toggle {
+    width: 2.45rem;
+    height: 2.45rem;
   }
 
   .home-hero {
