@@ -636,21 +636,45 @@
   text-transform: uppercase;
 }
 
-.featured-history-media__viewport {
+.featured-history-media__compact-track {
+  display: flex;
+  width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scroll-behavior: smooth;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  touch-action: pan-x pan-y;
+  -webkit-overflow-scrolling: touch;
+}
+
+.featured-history-media__compact-track::-webkit-scrollbar {
+  display: none;
+}
+
+.featured-history-media__compact-slide {
+  width: 100%;
+  min-width: 100%;
+  flex: 0 0 100%;
   overflow: hidden;
   margin: 0;
   border: 1px solid color-mix(in srgb, var(--color-gold) 42%, transparent);
   border-radius: 0;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
 }
 
-.featured-history-media__viewport .history-image__media,
-.featured-history-media__viewport .history-image__reserved {
+.featured-history-media__compact-slide .history-image__media,
+.featured-history-media__compact-slide .history-image__reserved {
+  display: block;
+  width: 100%;
   aspect-ratio: 16 / 10;
   border: 0;
   border-radius: 0;
+  object-fit: cover;
 }
 
-.featured-history-media__viewport--portrait .history-image__media {
+.featured-history-media__compact-slide--portrait .history-image__media {
   object-position: center 24%;
 }
 
@@ -662,14 +686,32 @@
   margin-top: 1rem;
 }
 
-.featured-history-media__indicators span {
-  width: 0.42rem;
-  height: 0.42rem;
+.featured-history-media__indicators button {
+  width: 0.58rem;
+  height: 0.58rem;
+  padding: 0;
   border: 1px solid color-mix(in srgb, var(--color-gold) 65%, transparent);
   border-radius: 50%;
+  background: transparent;
+  cursor: pointer;
+  transition:
+    background 140ms ease,
+    border-color 140ms ease,
+    transform 140ms ease;
+}
+
+.featured-history-media__indicators button:hover {
+  border-color: var(--color-gold);
+  transform: scale(1.12);
+}
+
+.featured-history-media__indicators button:focus-visible {
+  outline: 2px solid var(--color-gold);
+  outline-offset: 3px;
 }
 
 .featured-history-media__indicators .is-active {
+  border-color: var(--color-gold);
   background: var(--color-gold);
 }
 

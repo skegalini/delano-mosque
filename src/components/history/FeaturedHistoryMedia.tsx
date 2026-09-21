@@ -1,3 +1,5 @@
+import { useRef, useState } from 'react'
+
 import { HistoryImage } from './HistoryImage'
 
 export type FeaturedHistoryPhoto = {
@@ -26,8 +28,41 @@ export function FeaturedHistoryMedia({
     Math.max(minimumDesktopSlots, photos.length),
   )
   const slots = Array.from({ length: slotCount }, (_, index) => photos[index])
-  const featuredPhoto = photos[0]
-  const indicatorCount = photos.length || minimumDesktopSlots
+  const compactTrackRef = useRef<HTMLDivElement>(null)
+  const [compactIndex, setCompactIndex] = useState(0)
+
+  const selectCompactPhoto = (index: number) => {
+    const track = compactTrackRef.current
+
+    if (!track || index < 0 || index >= photos.length) {
+      return
+    }
+
+    setCompactIndex(index)
+    track.scrollTo({
+      left: index * track.clientWidth,
+      behavior:
+        typeof window !== 'undefined' &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches
+          ? 'auto'
+          : 'smooth',
+    })
+  }
+
+  const syncCompactIndex = () => {
+    const track = compactTrackRef.current
+
+    if (!track || track.clientWidth === 0 || photos.length === 0) {
+      return
+    }
+
+    const nextIndex = Math.min(
+      photos.length - 1,
+      Math.max(0, Math.round(track.scrollLeft / track.clientWidth)),
+    )
+
+    setCompactIndex(nextIndex)
+  }
 
   return (
     <aside className="featured-history-media" aria-label={sectionLabel}>
@@ -69,25 +104,50 @@ export function FeaturedHistoryMedia({
 
       <div className="featured-history-media__compact">
         <p className="featured-history-media__label">{sectionLabel}</p>
-        <HistoryImage
-          className={`featured-history-media__viewport ${
-            featuredPhoto
-              ? `featured-history-media__viewport--${featuredPhoto.orientation}`
-              : ''
-          }`}
-          src={featuredPhoto?.src}
-          alt={featuredPhoto?.alt}
-          objectPosition={featuredPhoto?.objectPosition}
-          emptyLabel={emptyLabel}
-        />
-        <div className="featured-history-media__indicators" aria-hidden="true">
-          {Array.from({ length: indicatorCount }, (_, index) => (
-            <span
-              className={index === 0 ? 'is-active' : undefined}
-              key={`indicator-${index}`}
+
+        <div
+          className="featured-history-media__compact-track"
+          dir="ltr"
+          ref={compactTrackRef}
+          onScroll={syncCompactIndex}
+        >
+          {photos.length > 0 ? (
+            photos.map((photo, index) => (
+              <HistoryImage
+                key={photo.src}
+                className={`featured-history-media__compact-slide featured-history-media__compact-slide--${photo.orientation}`}
+                src={photo.src}
+                alt={photo.alt}
+                objectPosition={photo.objectPosition}
+                emptyLabel={emptyLabel}
+              />
+            ))
+          ) : (
+            <HistoryImage
+              className="featured-history-media__compact-slide"
+              emptyLabel={emptyLabel}
             />
-          ))}
+          )}
         </div>
+
+        {photos.length > 1 ? (
+          <div
+            className="featured-history-media__indicators"
+            aria-label={sectionLabel}
+            role="group"
+          >
+            {photos.map((photo, index) => (
+              <button
+                aria-current={index === compactIndex ? 'true' : undefined}
+                aria-label={photo.alt}
+                className={index === compactIndex ? 'is-active' : undefined}
+                key={photo.src}
+                onClick={() => selectCompactPhoto(index)}
+                type="button"
+              />
+            ))}
+          </div>
+        ) : null}
       </div>
     </aside>
   )
