@@ -706,6 +706,7 @@
 }
 
 .community-photo-carousel {
+  --carousel-stage-cap: min(72vh, 38rem);
   width: 100%;
   outline: none;
 }
@@ -769,7 +770,6 @@
   /* The stage takes the active photograph's own ratio, capped so a tall
      portrait cannot swallow the viewport. Landscape frames therefore sit
      tight instead of floating in dead space. */
-  --carousel-stage-cap: min(72vh, 38rem);
   position: relative;
   display: flex;
   align-items: stretch;
@@ -835,8 +835,11 @@
   unicode-bidi: isolate;
 }
 
-.history-page__photo-credit {
-  width: min(100%, 74rem);
+.community-photo-carousel__credit {
+  width: min(
+    100%,
+    calc(var(--carousel-stage-cap) * var(--carousel-active-ratio-number, 1.5))
+  );
   margin: 1rem auto 0;
   color: var(--color-text-muted);
   font-family: var(--font-ui);
@@ -940,7 +943,7 @@
   color: var(--color-primary-hover);
 }
 
-[dir='rtl'] .history-page__photo-credit,
+[dir='rtl'] .community-photo-carousel__credit,
 [dir='rtl'] .history-page__documentary-meta,
 [dir='rtl'] .featured-history-media__label {
   font-family: var(--font-editorial);
@@ -1911,8 +1914,11 @@
     display: block;
   }
 
-  .community-photo-carousel__track {
+  .community-photo-carousel {
     --carousel-stage-cap: min(62vh, 30rem);
+  }
+
+  .community-photo-carousel__track {
     padding-inline: 0;
     scroll-padding-inline: 0;
   }
