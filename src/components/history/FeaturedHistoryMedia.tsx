@@ -112,7 +112,7 @@ export function FeaturedHistoryMedia({
           onScroll={syncCompactIndex}
         >
           {photos.length > 0 ? (
-            photos.map((photo, index) => (
+            photos.map((photo) => (
               <HistoryImage
                 key={photo.src}
                 className={`featured-history-media__compact-slide featured-history-media__compact-slide--${photo.orientation}`}
