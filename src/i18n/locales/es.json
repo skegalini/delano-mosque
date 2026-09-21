@@ -52,7 +52,8 @@
       "placeholder": "La historia de la mezquita y de su comunidad se compartirá aquí."
     },
     "programs": {
-      "title": "Programas"
+      "title": "Programas",
+      "placeholder": "Aquí aparecerán los próximos programas y actividades comunitarias de la mezquita."
     },
     "donate": {
       "title": "Donar"
