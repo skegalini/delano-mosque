@@ -1615,6 +1615,10 @@
   color: var(--color-gold);
 }
 
+[dir='rtl'] .jummah-note__icon {
+  transform: scaleX(-1);
+}
+
 .jummah-note__label {
   font-family: var(--font-ui);
   font-size: 0.78rem;
