@@ -2,8 +2,8 @@ import type { DonationConfiguration } from '../domain/donation'
 
 export const donationConfiguration: DonationConfiguration = {
   provider: 'givebutter',
-  status: 'pending-setup',
+  status: 'active',
   recipient: 'mosque',
   campaignUrl: null,
-  embedId: null,
+  embedId: 'j1XvJD',
 }

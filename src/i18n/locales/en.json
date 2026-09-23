@@ -3,6 +3,14 @@
   "language": {
     "label": "Language"
   },
+  "donationDialog": {
+    "close": "Close donation form",
+    "heading": "Support Abu Bakr Al-Siddiq Mosque",
+    "location": "Delano, California",
+    "verse": "Allah compares those who spend in His cause to a grain that grows seven ears, with a hundred grains in each.",
+    "reference": "Qur'an 2:261",
+    "supportingCopy": "Your support helps sustain worship, Islamic learning, and community life at Abu Bakr Al-Siddiq Mosque."
+  },
   "navigation": {
     "label": "Primary navigation",
     "home": "Home",

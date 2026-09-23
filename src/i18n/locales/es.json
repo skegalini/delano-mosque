@@ -2,6 +2,14 @@
   "language": {
     "label": "Idioma"
   },
+  "donationDialog": {
+    "close": "Cerrar formulario de donación",
+    "heading": "Apoya a la Mezquita Abu Bakr Al-Siddiq",
+    "location": "Delano, California",
+    "verse": "Allah compara a quienes dan de sus bienes por Su causa con un grano que produce siete espigas, cada una con cien granos.",
+    "reference": "Corán 2:261",
+    "supportingCopy": "Tu apoyo ayuda a sostener la adoración, la enseñanza islámica y la vida comunitaria en la Mezquita Abu Bakr Al-Siddiq."
+  },
   "navigation": {
     "home": "Inicio",
     "visit": "Visita",

@@ -7,6 +7,7 @@ import {
   supportedLanguages,
 } from '../../domain/localization'
 import { changeSiteLanguage, type SupportedLanguage } from '../../i18n/config'
+import { useDonationDialog } from '../donation/donationDialogContext'
 import { VolunteerActivismIcon } from '../icons/VolunteerActivismIcon'
 import { GeometricBorder } from './GeometricBorder'
 
@@ -22,6 +23,7 @@ export function PublicHeader() {
   const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
   const languageControlRef = useRef<HTMLDivElement>(null)
   const languageButtonRef = useRef<HTMLButtonElement>(null)
+  const { openDonationDialog } = useDonationDialog()
   const { i18n, t } = useTranslation()
   const currentLanguage = (i18n.resolvedLanguage ?? 'en') as SupportedLanguage
 
@@ -133,8 +135,7 @@ export function PublicHeader() {
 
             <button
               className="button button--donate site-header__donate"
-              data-gb-account="pmetkEb39XTuRaXB"
-              data-gb-campaign="HUXSOZ"
+              onClick={(event) => openDonationDialog(event.currentTarget)}
               type="button"
             >
               <VolunteerActivismIcon aria-hidden="true" />

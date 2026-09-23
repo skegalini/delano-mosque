@@ -1,4 +1,4 @@
-import { render, screen, within } from '@testing-library/react'
+import { fireEvent, render, screen, within } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import { createMemoryRouter, RouterProvider } from 'react-router-dom'
 
@@ -172,15 +172,40 @@ describe('application foundation', () => {
     ])
     const headerDonateButton = screen.getByRole('button', { name: 'Donate' })
 
-    expect(headerDonateButton).toHaveAttribute(
-      'data-gb-account',
-      'pmetkEb39XTuRaXB',
-    )
-    expect(headerDonateButton).toHaveAttribute('data-gb-campaign', 'HUXSOZ')
+    expect(headerDonateButton).not.toHaveAttribute('data-gb-account')
+    expect(headerDonateButton).not.toHaveAttribute('data-gb-campaign')
     expect(headerDonateButton?.querySelector('svg')).toBeInTheDocument()
     expect(
       screen.getByText(/© \d{4} Abu Bakr Al-Siddiq Mosque/),
     ).toBeInTheDocument()
+  })
+
+  it('opens the branded Givebutter donation dialog and restores focus', async () => {
+    const user = userEvent.setup()
+    renderRoute('/')
+
+    const donateButton = screen.getByRole('button', { name: 'Donate' })
+    await user.click(donateButton)
+
+    const dialog = screen.getByRole('dialog', {
+      name: 'Support Abu Bakr Al-Siddiq Mosque',
+    })
+
+    expect(dialog).toHaveAttribute('aria-modal', 'true')
+    expect(document.body).toHaveStyle({ overflow: 'hidden' })
+    expect(dialog.querySelector('givebutter-widget')).toHaveAttribute(
+      'id',
+      'j1XvJD',
+    )
+    expect(
+      screen.getByText(/Allah compares those who spend in His cause/),
+    ).toBeInTheDocument()
+
+    fireEvent(dialog, new Event('cancel', { cancelable: true }))
+
+    expect(dialog).not.toHaveAttribute('open')
+    expect(document.body.style.overflow).toBe('')
+    expect(donateButton).toHaveFocus()
   })
 
   it('renders visitor information on the Visit route', () => {

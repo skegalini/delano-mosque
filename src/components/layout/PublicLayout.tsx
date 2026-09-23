@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
+import { DonationDialogProvider } from '../donation/DonationDialogProvider'
 import { PublicFooter } from './PublicFooter'
 import { PublicHeader } from './PublicHeader'
 
@@ -22,14 +23,16 @@ export function PublicLayout() {
   }, [location.key])
 
   return (
-    <div className="site-shell">
-      <PublicHeader />
+    <DonationDialogProvider>
+      <div className="site-shell">
+        <PublicHeader />
 
-      <main className={mainClassName}>
-        <Outlet />
-      </main>
+        <main className={mainClassName}>
+          <Outlet />
+        </main>
 
-      <PublicFooter />
-    </div>
+        <PublicFooter />
+      </div>
+    </DonationDialogProvider>
   )
 }

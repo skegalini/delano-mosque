@@ -354,6 +354,184 @@
   flex: none;
 }
 
+.donation-dialog {
+  width: min(48rem, calc(100vw - 2rem));
+  max-width: none;
+  max-height: min(90dvh, 56rem);
+  overflow: auto;
+  border: 1px solid color-mix(in srgb, var(--color-sand) 32%, transparent);
+  border-radius: 0.9rem;
+  margin: auto;
+  padding: 0;
+  background: var(--color-surface);
+  box-shadow: 0 2rem 6rem rgb(0 0 0 / 58%);
+  color: var(--color-text);
+}
+
+.donation-dialog:not([open]) {
+  display: none;
+}
+
+.donation-dialog::backdrop {
+  background: rgb(2 8 6 / 78%);
+}
+
+.donation-dialog__shell {
+  position: relative;
+  min-height: 100%;
+  background: var(--color-surface);
+}
+
+.donation-dialog__brand {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(2.1rem, 5vw, 3.4rem) clamp(1.5rem, 5vw, 3.5rem)
+    clamp(2rem, 4vw, 2.8rem);
+  background:
+    linear-gradient(rgb(9 25 19 / 94%), rgb(9 25 19 / 96%)),
+    url('/assets/patterns/subtle-floral-rosette.svg') center / 18rem repeat;
+  text-align: center;
+}
+
+.donation-dialog__brand::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    color-mix(in srgb, var(--color-sand) 55%, transparent),
+    transparent
+  );
+  content: '';
+}
+
+.donation-dialog__close {
+  position: absolute;
+  inset-block-start: 1rem;
+  inset-inline-end: 1rem;
+  z-index: 2;
+  display: inline-flex;
+  min-height: 2.5rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border: 1px solid color-mix(in srgb, var(--color-sand) 28%, transparent);
+  border-radius: var(--radius-pill);
+  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
+  color: var(--color-cream);
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.55rem 0.8rem;
+}
+
+.donation-dialog__close:hover {
+  border-color: color-mix(in srgb, var(--color-sand) 52%, transparent);
+  background: color-mix(in srgb, var(--color-sand) 10%, var(--color-surface));
+}
+
+.donation-dialog__close-icon {
+  font-family: var(--font-ui);
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 0.8;
+}
+
+.donation-dialog__logo {
+  width: 4.75rem;
+  height: 4.75rem;
+  margin-inline: auto;
+  object-fit: contain;
+}
+
+.donation-dialog__title {
+  max-width: 21ch;
+  margin: 0.8rem auto 0;
+  color: var(--color-cream);
+  font-size: clamp(1.9rem, 5vw, 2.8rem);
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.donation-dialog__location {
+  margin: 0.55rem 0 0;
+  color: var(--color-text-muted);
+  font-size: 0.78rem;
+  font-weight: 650;
+}
+
+.donation-dialog__divider {
+  display: block;
+  width: 4.25rem;
+  height: 1px;
+  margin: 1.45rem auto 1.25rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--color-gold),
+    transparent
+  );
+}
+
+.donation-dialog__verse {
+  max-width: 38rem;
+  margin: 0 auto;
+  color: var(--color-heading);
+  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
+  line-height: 1.65;
+  text-wrap: balance;
+}
+
+.donation-dialog__reference {
+  margin: 0.65rem 0 0;
+  color: var(--color-gold);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.donation-dialog__supporting-copy {
+  max-width: 35rem;
+  margin: 1.35rem auto 0;
+  color: var(--color-text-muted);
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+[dir='rtl'] .donation-dialog__verse {
+  font-family: var(--font-editorial);
+  font-size: clamp(1.2rem, 3vw, 1.55rem);
+  line-height: 1.95;
+}
+
+[dir='rtl'] .donation-dialog__reference {
+  font-family: var(--font-editorial);
+  font-size: 0.92rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.donation-dialog__form {
+  padding: clamp(1rem, 3vw, 1.6rem);
+  background: #f6f3ec;
+  color-scheme: light;
+}
+
+.donation-dialog__form givebutter-widget {
+  display: block;
+  width: 100%;
+  min-height: 30rem;
+  overflow: hidden;
+  border-radius: 0.55rem;
+  background: #ffffff;
+}
+
 .menu-toggle {
   display: none;
   width: 2.75rem;
@@ -2265,6 +2443,48 @@
 
   .geometric-border--section {
     height: 22px;
+  }
+}
+
+@media (max-width: 42rem) {
+  .donation-dialog {
+    width: 100vw;
+    height: 100dvh;
+    max-height: none;
+    border: 0;
+    border-radius: 0;
+    margin: 0;
+  }
+
+  .donation-dialog__brand {
+    padding-block-start: max(4.5rem, calc(env(safe-area-inset-top) + 3.6rem));
+    padding-inline: max(1.25rem, env(safe-area-inset-left))
+      max(1.25rem, env(safe-area-inset-right));
+  }
+
+  .donation-dialog__close {
+    inset-block-start: max(0.8rem, env(safe-area-inset-top));
+    inset-inline-end: max(0.8rem, env(safe-area-inset-right));
+  }
+
+  .donation-dialog__logo {
+    width: 4.35rem;
+    height: 4.35rem;
+  }
+
+  .donation-dialog__title {
+    font-size: clamp(1.8rem, 9vw, 2.35rem);
+  }
+
+  .donation-dialog__form {
+    padding: 0.75rem max(0.65rem, env(safe-area-inset-right))
+      max(1rem, env(safe-area-inset-bottom))
+      max(0.65rem, env(safe-area-inset-left));
+  }
+
+  .donation-dialog__form givebutter-widget {
+    min-height: 36rem;
+    border-radius: 0.4rem;
   }
 }
 
