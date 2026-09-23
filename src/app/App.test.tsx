@@ -10,6 +10,15 @@ const renderRoute = (path: string) => {
   return render(<RouterProvider router={router} />)
 }
 
+const chooseLanguage = async (
+  user: ReturnType<typeof userEvent.setup>,
+  controlName: string,
+  languageName: string,
+) => {
+  await user.click(screen.getByRole('button', { name: controlName }))
+  await user.click(screen.getByRole('option', { name: languageName }))
+}
+
 describe('application foundation', () => {
   beforeEach(async () => {
     await i18n.changeLanguage('en')
@@ -69,7 +78,9 @@ describe('application foundation', () => {
     expect(
       screen.getByText(/The mosque was named in honor of Abu Bakr al-Siddiq/),
     ).toHaveTextContent('Prophet Muhammad ﷺ')
-    expect(screen.getByLabelText('Featured photos')).toBeInTheDocument()
+    expect(
+      screen.getByRole('complementary', { name: 'Featured photos' }),
+    ).toBeInTheDocument()
     expect(
       Array.from(
         container.querySelectorAll<HTMLImageElement>(
@@ -107,9 +118,11 @@ describe('application foundation', () => {
       screen.getByRole('link', { name: /Watch on YouTube/ }),
     ).toHaveAttribute('href', 'https://youtu.be/yC9CVepWQUY')
 
-    await user.selectOptions(screen.getByLabelText('Language'), 'es')
+    await chooseLanguage(user, 'Language', 'Español')
     expect(screen.getByText('Nuestra Historia')).toBeInTheDocument()
-    expect(screen.getByLabelText('Fotografías destacadas')).toBeInTheDocument()
+    expect(
+      screen.getByRole('complementary', { name: 'Fotografías destacadas' }),
+    ).toBeInTheDocument()
     expect(
       screen.getByText(/la de Mohammed e Irma Abdullah/),
     ).toBeInTheDocument()
@@ -119,13 +132,15 @@ describe('application foundation', () => {
       ),
     ).toBeInTheDocument()
 
-    await user.selectOptions(screen.getByLabelText('Idioma'), 'ar')
+    await chooseLanguage(user, 'Idioma', 'العربية')
     expect(screen.getByText('تاريخنا')).toBeInTheDocument()
     expect(
       screen.getByText(/وسُمّي المسجد باسم أبي بكر الصديق/),
     ).toHaveTextContent('رضي الله عنه')
     expect(screen.getByText(/منزل محمد وإيرما عبد الله/)).toBeInTheDocument()
-    expect(screen.getByLabelText('صور مختارة')).toBeInTheDocument()
+    expect(
+      screen.getByRole('complementary', { name: 'صور مختارة' }),
+    ).toBeInTheDocument()
     expect(
       screen.getByText('صور من عام 2012، مقدمة بإذن من جوناثان فريدلاندر.'),
     ).toBeInTheDocument()
@@ -190,7 +205,7 @@ describe('application foundation', () => {
     const user = userEvent.setup()
     renderRoute('/')
 
-    await user.selectOptions(screen.getByLabelText('Language'), 'ar')
+    await chooseLanguage(user, 'Language', 'العربية')
 
     expect(document.documentElement).toHaveAttribute('lang', 'ar')
     expect(document.documentElement).toHaveAttribute('dir', 'rtl')
@@ -221,7 +236,7 @@ describe('application foundation', () => {
     const primaryNavigation = screen.getByRole('navigation', {
       name: 'Primary navigation',
     })
-    const languageControl = screen.getByRole('combobox', { name: 'Language' })
+    const languageControl = screen.getByRole('button', { name: 'Language' })
     const donateButton = screen.getByRole('button', { name: 'Donate' })
     const menuButton = screen.getByRole('button', {
       name: 'Open navigation menu',
@@ -229,7 +244,8 @@ describe('application foundation', () => {
 
     expect(primaryNavigation).not.toContainElement(languageControl)
     expect(primaryNavigation).not.toContainElement(donateButton)
-    expect(document.querySelectorAll('#language')).toHaveLength(1)
+    expect(languageControl).toHaveTextContent('English')
+    expect(document.querySelectorAll('#language-selector')).toHaveLength(1)
     expect(menuButton).toHaveAttribute('aria-expanded', 'false')
 
     await user.click(menuButton)

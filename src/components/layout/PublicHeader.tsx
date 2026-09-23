@@ -1,13 +1,11 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link, NavLink } from 'react-router-dom'
 
 import {
-  supportedLanguageAbbreviations,
   supportedLanguageNames,
   supportedLanguages,
 } from '../../domain/localization'
-import { useMediaQuery } from '../../hooks/useMediaQuery'
 import { changeSiteLanguage, type SupportedLanguage } from '../../i18n/config'
 import { VolunteerActivismIcon } from '../icons/VolunteerActivismIcon'
 import { GeometricBorder } from './GeometricBorder'
@@ -19,17 +17,29 @@ const navigation = [
   { to: '/about', label: 'navigation.about', end: false },
 ] as const
 
-// Phones only get the compact labels; tablets and desktops have room for the
-// full names, including inside the collapsed menu panel.
-const roomForFullLanguageNamesQuery = 'not all and (max-width: 34rem)'
-
 export function PublicHeader() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isLanguageMenuOpen, setIsLanguageMenuOpen] = useState(false)
+  const languageControlRef = useRef<HTMLDivElement>(null)
+  const languageButtonRef = useRef<HTMLButtonElement>(null)
   const { i18n, t } = useTranslation()
-  const showsFullLanguageNames = useMediaQuery(roomForFullLanguageNamesQuery)
+  const currentLanguage = (i18n.resolvedLanguage ?? 'en') as SupportedLanguage
+
+  useEffect(() => {
+    const closeLanguageMenu = (event: PointerEvent) => {
+      if (!languageControlRef.current?.contains(event.target as Node)) {
+        setIsLanguageMenuOpen(false)
+      }
+    }
+
+    document.addEventListener('pointerdown', closeLanguageMenu)
+    return () => document.removeEventListener('pointerdown', closeLanguageMenu)
+  }, [])
 
   const changeLanguage = (language: SupportedLanguage) => {
     void changeSiteLanguage(language)
+    setIsLanguageMenuOpen(false)
+    languageButtonRef.current?.focus()
   }
 
   return (
@@ -72,25 +82,54 @@ export function PublicHeader() {
           </div>
 
           <div className="site-header__actions">
-            <label className="language-control" htmlFor="language">
-              <span className="sr-only">{t('language.label')}</span>
-              <select
+            <div className="language-control" ref={languageControlRef}>
+              <button
                 aria-label={t('language.label')}
-                id="language"
-                onChange={(event) =>
-                  changeLanguage(event.target.value as SupportedLanguage)
-                }
-                value={i18n.resolvedLanguage ?? 'en'}
+                aria-controls="language-options"
+                aria-expanded={isLanguageMenuOpen}
+                aria-haspopup="listbox"
+                className="language-control__trigger"
+                id="language-selector"
+                onClick={() => setIsLanguageMenuOpen((isOpen) => !isOpen)}
+                onKeyDown={(event) => {
+                  if (event.key === 'Escape') {
+                    setIsLanguageMenuOpen(false)
+                  }
+                }}
+                ref={languageButtonRef}
+                type="button"
               >
-                {supportedLanguages.map((language) => (
-                  <option key={language} value={language}>
-                    {showsFullLanguageNames
-                      ? supportedLanguageNames[language]
-                      : supportedLanguageAbbreviations[language]}
-                  </option>
-                ))}
-              </select>
-            </label>
+                <span>{supportedLanguageNames[currentLanguage]}</span>
+                <span
+                  aria-hidden="true"
+                  className="language-control__chevron"
+                />
+              </button>
+
+              {isLanguageMenuOpen ? (
+                <ul
+                  aria-label={t('language.label')}
+                  className="language-control__options"
+                  id="language-options"
+                  role="listbox"
+                >
+                  {supportedLanguages.map((language) => (
+                    <li key={language} role="presentation">
+                      <button
+                        aria-selected={language === currentLanguage}
+                        className="language-control__option"
+                        lang={language}
+                        onClick={() => changeLanguage(language)}
+                        role="option"
+                        type="button"
+                      >
+                        {supportedLanguageNames[language]}
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              ) : null}
+            </div>
 
             <button
               className="button button--donate site-header__donate"

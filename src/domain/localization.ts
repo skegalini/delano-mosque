@@ -15,13 +15,6 @@ export const supportedLanguageNames = {
   ar: 'العربية',
 } as const satisfies Record<SupportedLanguage, string>
 
-/** Compact labels for the collapsed mobile header. */
-export const supportedLanguageAbbreviations = {
-  en: 'EN',
-  es: 'ES',
-  ar: 'AR',
-} as const satisfies Record<SupportedLanguage, string>
-
 export function normalizeSupportedLanguage(
   language: string,
 ): SupportedLanguage | null {
