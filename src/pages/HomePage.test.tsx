@@ -75,6 +75,7 @@ describe('Home prayer times', () => {
     expect(screen.getByText('12:59 PM')).toBeInTheDocument()
     expect(screen.getByText('7:39 PM')).toBeInTheDocument()
     expect(screen.getByText('Thursday, August 27')).toBeInTheDocument()
+    expect(screen.getByText('Delano local time · PT')).toBeInTheDocument()
   })
 
   it("shows the Jumu'ah time in the hero, under the primary actions", async () => {

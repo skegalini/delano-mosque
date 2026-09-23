@@ -32,6 +32,7 @@
       "prayerTimes": {
         "eyebrow": "جدول الصلاة",
         "title": "مواقيت الصلاة اليوم",
+        "localTime": "توقيت ديلانو المحلي · PT",
         "labels": {
           "fajr": "الفجر",
           "sunrise": "الشروق",

@@ -98,12 +98,17 @@ export function PrayerTimes() {
 
       {state.status === 'success' && (
         <div className="prayer-times__content">
-          <p className="prayer-times__date">
-            <CalendarToday aria-hidden="true" />
-            <span dir="auto">
-              {formatPrayerDate(state.result.times.date, locale)}
-            </span>
-          </p>
+          <div className="prayer-times__meta">
+            <p className="prayer-times__date">
+              <CalendarToday aria-hidden="true" />
+              <span dir="auto">
+                {formatPrayerDate(state.result.times.date, locale)}
+              </span>
+            </p>
+            <p className="prayer-times__timezone" dir="auto">
+              {t('pages.home.prayerTimes.localTime')}
+            </p>
+          </div>
           <PrayerDayPath
             activePrayerKey={getActivePrayerKey(state.result.times, instant)}
             progress={getDayProgress(state.result.times, instant)}

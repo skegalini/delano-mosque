@@ -34,6 +34,7 @@
       "prayerTimes": {
         "eyebrow": "Prayer schedule",
         "title": "Today's Prayer Times",
+        "localTime": "Delano local time · PT",
         "loading": "Loading calculated prayer times…",
         "unavailable": "Prayer times are temporarily unavailable.",
         "cachedNotice": "Showing saved calculated prayer times while the latest update is unavailable.",

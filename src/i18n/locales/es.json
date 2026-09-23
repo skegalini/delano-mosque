@@ -32,6 +32,7 @@
       "prayerTimes": {
         "eyebrow": "Horario de oración",
         "title": "Horarios de oración de hoy",
+        "localTime": "Hora local de Delano · PT",
         "labels": {
           "fajr": "Fajr",
           "sunrise": "Amanecer",

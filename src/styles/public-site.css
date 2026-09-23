@@ -1914,7 +1914,15 @@
   margin-top: 1rem;
 }
 
+.prayer-times__meta {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
 .prayer-times__date,
+.prayer-times__timezone,
 .prayer-times__status,
 .prayer-times__notice {
   color: var(--prayer-secondary-text);
@@ -1930,6 +1938,16 @@
   align-items: center;
   direction: ltr;
   gap: 0.55rem;
+  margin: 0;
+}
+
+.prayer-times__timezone {
+  margin: 0;
+  color: var(--prayer-eyebrow);
+  font-family: var(--font-ui);
+  font-size: 0.7rem;
+  font-weight: 750;
+  letter-spacing: 0.055em;
 }
 
 .prayer-times__date svg {
