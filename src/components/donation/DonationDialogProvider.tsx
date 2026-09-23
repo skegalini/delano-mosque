@@ -101,31 +101,13 @@ function DonationDialog({
           <span aria-hidden="true" className="donation-dialog__close-icon">
             ×
           </span>
-          <span className="donation-dialog__close-label">
-            {t('donationDialog.close')}
-          </span>
+          <span className="sr-only">{t('donationDialog.close')}</span>
         </button>
 
-        <header className="donation-dialog__brand">
-          <img
-            alt=""
-            aria-hidden="true"
-            className="donation-dialog__logo"
-            height="1254"
-            src="/assets/brand/abu-bakr-logo-dark-clean.png"
-            width="1254"
-          />
-          <h2
-            className="donation-dialog__title font-heading"
-            id="donation-dialog-title"
-          >
+        <header className="donation-dialog__verse-section">
+          <h2 className="sr-only" id="donation-dialog-title">
             {t('donationDialog.heading')}
           </h2>
-          <p className="donation-dialog__location">
-            {t('donationDialog.location')}
-          </p>
-
-          <span aria-hidden="true" className="donation-dialog__divider" />
 
           <p className="donation-dialog__verse font-editorial">
             {t('donationDialog.verse')}
@@ -133,14 +115,28 @@ function DonationDialog({
           <p className="donation-dialog__reference">
             {t('donationDialog.reference')}
           </p>
-          <p className="donation-dialog__supporting-copy">
-            {t('donationDialog.supportingCopy')}
-          </p>
         </header>
 
         <div className="donation-dialog__form">
           <givebutter-widget id={donationConfiguration.embedId ?? undefined} />
         </div>
+
+        <footer className="donation-dialog__support">
+          <span aria-hidden="true" className="donation-dialog__divider" />
+          <div className="donation-dialog__support-content">
+            <img
+              alt=""
+              aria-hidden="true"
+              className="donation-dialog__logo"
+              height="1254"
+              src="/assets/brand/abu-bakr-al-siddiq-official.JPG"
+              width="1254"
+            />
+            <p className="donation-dialog__supporting-copy">
+              {t('donationDialog.supportingCopy')}
+            </p>
+          </div>
+        </footer>
       </div>
     </dialog>
   )

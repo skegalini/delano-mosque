@@ -4,7 +4,6 @@ import {
   useEffect,
   useRef,
   useState,
-  type CSSProperties,
   type KeyboardEvent,
   type ReactNode,
 } from 'react'
@@ -43,15 +42,6 @@ export function CommunityPhotoCarousel({
   const pendingIndexRef = useRef<number | null>(null)
   const [currentIndex, setCurrentIndex] = useState(0)
   const lastIndex = Math.max(0, photos.length - 1)
-  const activePhoto = photos[currentIndex]
-  // Drives the stage's aspect-ratio so the frame hugs the active photograph.
-  const stageStyle = activePhoto
-    ? ({
-        '--carousel-active-ratio': `${activePhoto.width} / ${activePhoto.height}`,
-        '--carousel-active-ratio-number':
-          activePhoto.width / activePhoto.height,
-      } as CSSProperties)
-    : undefined
 
   const syncIndexToScroll = useCallback(() => {
     const track = trackRef.current
@@ -187,7 +177,6 @@ export function CommunityPhotoCarousel({
         <div
           className="community-photo-carousel__track"
           ref={trackRef}
-          style={stageStyle}
           onPointerDown={releaseProgrammaticScroll}
           onScroll={handleScroll}
           onTouchStart={releaseProgrammaticScroll}
@@ -236,9 +225,7 @@ export function CommunityPhotoCarousel({
       </p>
 
       {credit ? (
-        <p className="community-photo-carousel__credit" style={stageStyle}>
-          {credit}
-        </p>
+        <p className="community-photo-carousel__credit">{credit}</p>
       ) : null}
     </div>
   )

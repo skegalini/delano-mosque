@@ -359,13 +359,13 @@
   max-width: none;
   max-height: min(90dvh, 56rem);
   overflow: auto;
-  border: 1px solid color-mix(in srgb, var(--color-sand) 32%, transparent);
-  border-radius: 0.9rem;
+  border: 1px solid color-mix(in srgb, var(--color-sand) 42%, transparent);
+  border-radius: 0.75rem;
   margin: auto;
   padding: 0;
-  background: var(--color-surface);
+  background: #f6f3ec;
   box-shadow: 0 2rem 6rem rgb(0 0 0 / 58%);
-  color: var(--color-text);
+  color: var(--color-warm-background);
 }
 
 .donation-dialog:not([open]) {
@@ -379,135 +379,114 @@
 .donation-dialog__shell {
   position: relative;
   min-height: 100%;
-  background: var(--color-surface);
+  background: #f6f3ec;
 }
 
-.donation-dialog__brand {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(2.1rem, 5vw, 3.4rem) clamp(1.5rem, 5vw, 3.5rem)
-    clamp(2rem, 4vw, 2.8rem);
-  background:
-    linear-gradient(rgb(9 25 19 / 94%), rgb(9 25 19 / 96%)),
-    url('/assets/patterns/subtle-floral-rosette.svg') center / 18rem repeat;
+.donation-dialog__verse-section {
+  padding: clamp(2.5rem, 5vw, 3.25rem) clamp(1.5rem, 6vw, 3.75rem) 0.6rem;
+  background: #f6f3ec;
   text-align: center;
-}
-
-.donation-dialog__brand::after {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    color-mix(in srgb, var(--color-sand) 55%, transparent),
-    transparent
-  );
-  content: '';
 }
 
 .donation-dialog__close {
   position: absolute;
-  inset-block-start: 1rem;
-  inset-inline-end: 1rem;
+  inset-block-start: 0.7rem;
+  inset-inline-end: 0.7rem;
   z-index: 2;
   display: inline-flex;
-  min-height: 2.5rem;
+  width: 2.15rem;
+  height: 2.15rem;
   align-items: center;
   justify-content: center;
-  gap: 0.4rem;
-  border: 1px solid color-mix(in srgb, var(--color-sand) 28%, transparent);
-  border-radius: var(--radius-pill);
-  background: color-mix(in srgb, var(--color-surface) 82%, transparent);
-  color: var(--color-cream);
+  border: 1px solid
+    color-mix(in srgb, var(--color-warm-background) 22%, transparent);
+  border-radius: 50%;
+  background: color-mix(in srgb, #f6f3ec 92%, transparent);
+  color: var(--color-warm-background);
   cursor: pointer;
   font: inherit;
-  font-size: 0.72rem;
-  font-weight: 700;
-  padding: 0.55rem 0.8rem;
+  padding: 0;
 }
 
 .donation-dialog__close:hover {
-  border-color: color-mix(in srgb, var(--color-sand) 52%, transparent);
-  background: color-mix(in srgb, var(--color-sand) 10%, var(--color-surface));
+  border-color: color-mix(in srgb, var(--color-gold) 72%, transparent);
+  background: color-mix(in srgb, var(--color-gold) 10%, #f6f3ec);
 }
 
 .donation-dialog__close-icon {
   font-family: var(--font-ui);
-  font-size: 1.25rem;
+  font-size: 1.35rem;
   font-weight: 400;
-  line-height: 0.8;
+  line-height: 1;
+  transform: translateY(-0.06rem);
+}
+
+.donation-dialog__support {
+  padding: 0 clamp(1.5rem, 5vw, 3rem) 1.35rem;
+  background: #f6f3ec;
+}
+
+.donation-dialog__support-content {
+  display: flex;
+  max-width: 34rem;
+  align-items: center;
+  gap: 1.15rem;
+  margin-inline: auto;
+  text-align: start;
 }
 
 .donation-dialog__logo {
   width: 4.75rem;
   height: 4.75rem;
-  margin-inline: auto;
-  object-fit: contain;
-}
-
-.donation-dialog__title {
-  max-width: 21ch;
-  margin: 0.8rem auto 0;
-  color: var(--color-cream);
-  font-size: clamp(1.9rem, 5vw, 2.8rem);
-  line-height: 1.12;
-  text-wrap: balance;
-}
-
-.donation-dialog__location {
-  margin: 0.55rem 0 0;
-  color: var(--color-text-muted);
-  font-size: 0.78rem;
-  font-weight: 650;
+  flex: none;
+  aspect-ratio: 1;
+  border-radius: 0.35rem;
+  object-fit: cover;
 }
 
 .donation-dialog__divider {
   display: block;
-  width: 4.25rem;
+  width: min(100%, 34rem);
   height: 1px;
-  margin: 1.45rem auto 1.25rem;
+  margin: 0 auto 1rem;
   background: linear-gradient(
     90deg,
     transparent,
-    var(--color-gold),
+    color-mix(in srgb, var(--color-gold) 55%, transparent),
     transparent
   );
 }
 
 .donation-dialog__verse {
-  max-width: 38rem;
+  max-width: 36rem;
   margin: 0 auto;
-  color: var(--color-heading);
-  font-size: clamp(1.05rem, 2.4vw, 1.3rem);
-  line-height: 1.65;
+  color: color-mix(in srgb, var(--color-warm-background) 88%, black);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  line-height: 1.6;
   text-wrap: balance;
 }
 
 .donation-dialog__reference {
-  margin: 0.65rem 0 0;
-  color: var(--color-gold);
+  margin: 0.6rem 0 0;
+  color: color-mix(in srgb, var(--color-gold) 72%, #6b5326);
   font-family: var(--font-ui);
-  font-size: 0.7rem;
+  font-size: 0.67rem;
   font-weight: 800;
   letter-spacing: 0.1em;
   text-transform: uppercase;
 }
 
 .donation-dialog__supporting-copy {
-  max-width: 35rem;
-  margin: 1.35rem auto 0;
-  color: var(--color-text-muted);
-  font-size: 0.88rem;
-  line-height: 1.65;
+  margin: 0;
+  color: color-mix(in srgb, var(--color-warm-background) 78%, #ffffff);
+  font-size: clamp(0.88rem, 1.6vw, 0.98rem);
+  line-height: 1.55;
 }
 
 [dir='rtl'] .donation-dialog__verse {
   font-family: var(--font-editorial);
-  font-size: clamp(1.2rem, 3vw, 1.55rem);
-  line-height: 1.95;
+  font-size: clamp(1.45rem, 3vw, 1.8rem);
+  line-height: 1.9;
 }
 
 [dir='rtl'] .donation-dialog__reference {
@@ -518,18 +497,17 @@
 }
 
 .donation-dialog__form {
-  padding: clamp(1rem, 3vw, 1.6rem);
+  display: grid;
+  place-items: start center;
+  padding: 0.45rem clamp(0.75rem, 4vw, 2rem) 0.85rem;
   background: #f6f3ec;
   color-scheme: light;
 }
 
 .donation-dialog__form givebutter-widget {
   display: block;
-  width: 100%;
-  min-height: 30rem;
-  overflow: hidden;
-  border-radius: 0.55rem;
-  background: #ffffff;
+  width: min(100%, 26rem);
+  min-height: 28rem;
 }
 
 .menu-toggle {
@@ -1080,9 +1058,8 @@
 }
 
 .community-photo-carousel__track {
-  /* The stage takes the active photograph's own ratio, capped so a tall
-     portrait cannot swallow the viewport. Landscape frames therefore sit
-     tight instead of floating in dead space. */
+  /* Keep one landscape stage across the album. Portrait photographs remain
+     uncropped and centered, but no longer make the page jump vertically. */
   position: relative;
   display: flex;
   align-items: stretch;
@@ -1092,7 +1069,7 @@
      max-height transfers back through aspect-ratio and narrows the track. */
   width: 100%;
   max-height: var(--carousel-stage-cap);
-  aspect-ratio: var(--carousel-active-ratio, 3 / 2);
+  aspect-ratio: 3 / 2;
   overflow-x: auto;
   overscroll-behavior-inline: contain;
   scroll-behavior: smooth;
@@ -1149,10 +1126,7 @@
 }
 
 .community-photo-carousel__credit {
-  width: min(
-    100%,
-    calc(var(--carousel-stage-cap) * var(--carousel-active-ratio-number, 1.5))
-  );
+  width: min(100%, calc(var(--carousel-stage-cap) * 1.5));
   margin: 1rem auto 0;
   color: var(--color-text-muted);
   font-family: var(--font-ui);
@@ -2456,10 +2430,10 @@
     margin: 0;
   }
 
-  .donation-dialog__brand {
-    padding-block-start: max(4.5rem, calc(env(safe-area-inset-top) + 3.6rem));
-    padding-inline: max(1.25rem, env(safe-area-inset-left))
-      max(1.25rem, env(safe-area-inset-right));
+  .donation-dialog__verse-section {
+    padding-block-start: max(3.25rem, calc(env(safe-area-inset-top) + 2.8rem));
+    padding-inline: max(1rem, env(safe-area-inset-left))
+      max(1rem, env(safe-area-inset-right));
   }
 
   .donation-dialog__close {
@@ -2467,24 +2441,32 @@
     inset-inline-end: max(0.8rem, env(safe-area-inset-right));
   }
 
+  .donation-dialog__support {
+    padding-inline: max(1rem, env(safe-area-inset-left))
+      max(1rem, env(safe-area-inset-right));
+    padding-bottom: max(1.15rem, env(safe-area-inset-bottom));
+  }
+
+  .donation-dialog__support-content {
+    flex-direction: column;
+    gap: 0.65rem;
+    padding-inline: 0.75rem;
+    text-align: center;
+  }
+
   .donation-dialog__logo {
     width: 4.35rem;
     height: 4.35rem;
   }
 
-  .donation-dialog__title {
-    font-size: clamp(1.8rem, 9vw, 2.35rem);
-  }
-
   .donation-dialog__form {
-    padding: 0.75rem max(0.65rem, env(safe-area-inset-right))
+    padding: 0.25rem max(0.35rem, env(safe-area-inset-right))
       max(1rem, env(safe-area-inset-bottom))
-      max(0.65rem, env(safe-area-inset-left));
+      max(0.35rem, env(safe-area-inset-left));
   }
 
   .donation-dialog__form givebutter-widget {
-    min-height: 36rem;
-    border-radius: 0.4rem;
+    min-height: 32rem;
   }
 }
 
