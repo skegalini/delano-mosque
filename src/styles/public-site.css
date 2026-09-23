@@ -600,12 +600,12 @@
 
 .history-page__text-endmark {
   display: inline-block;
-  justify-self: end;
-  margin-top: -0.65rem;
+  margin-inline-start: 0.35em;
   color: var(--color-gold);
   font-family: var(--font-editorial);
-  font-size: 1.45rem;
+  font-size: 1.15em;
   line-height: 1;
+  vertical-align: -0.08em;
 }
 
 [dir='rtl'] .history-page__text-endmark {

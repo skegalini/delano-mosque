@@ -15,6 +15,7 @@ import { resolveLocalizedContent } from '../domain/localization'
 type HistoryChapterProps = {
   heading?: string
   body: string
+  endMarked?: boolean
   emphasized?: boolean
   opening?: boolean
 }
@@ -22,6 +23,7 @@ type HistoryChapterProps = {
 function HistoryChapter({
   heading,
   body,
+  endMarked = false,
   emphasized = false,
   opening = false,
 }: HistoryChapterProps) {
@@ -44,7 +46,14 @@ function HistoryChapter({
   return (
     <section className={className}>
       <h3 className="history-chapter__title font-heading">{heading}</h3>
-      <p className="history-chapter__body">{body}</p>
+      <p className="history-chapter__body">
+        {body}
+        {endMarked ? (
+          <span className="history-page__text-endmark" aria-hidden="true">
+            ❦
+          </span>
+        ) : null}
+      </p>
     </section>
   )
 }
@@ -128,10 +137,8 @@ export function AboutPage() {
             <HistoryChapter
               heading={t('pages.about.history.sections.worship.heading')}
               body={t('pages.about.history.sections.worship.body')}
+              endMarked
             />
-            <span className="history-page__text-endmark" aria-hidden="true">
-              ❦
-            </span>
           </div>
 
           <FeaturedHistoryMedia
