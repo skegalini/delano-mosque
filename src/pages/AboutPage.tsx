@@ -129,6 +129,9 @@ export function AboutPage() {
               heading={t('pages.about.history.sections.worship.heading')}
               body={t('pages.about.history.sections.worship.body')}
             />
+            <span className="history-page__text-endmark" aria-hidden="true">
+              ❦
+            </span>
           </div>
 
           <FeaturedHistoryMedia

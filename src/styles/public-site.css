@@ -598,6 +598,20 @@
   gap: clamp(1.75rem, 3vw, 2.7rem);
 }
 
+.history-page__text-endmark {
+  display: inline-block;
+  justify-self: end;
+  margin-top: -0.65rem;
+  color: var(--color-gold);
+  font-family: var(--font-editorial);
+  font-size: 1.45rem;
+  line-height: 1;
+}
+
+[dir='rtl'] .history-page__text-endmark {
+  transform: scaleX(-1);
+}
+
 .history-chapter {
   position: relative;
 }
