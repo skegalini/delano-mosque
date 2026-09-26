@@ -125,7 +125,11 @@
     },
     "programs": {
       "title": "Programs",
-      "placeholder": "Future mosque programs and community activities will appear here."
+      "eyebrow": "Learning and community",
+      "introduction": "Explore opportunities for Quran learning, youth development, faith, and fellowship at the mosque.",
+      "selectionLabel": "Choose a program to view its details",
+      "viewDetails": "View program details",
+      "hideDetails": "Hide program details"
     },
     "donate": {
       "title": "Donate",

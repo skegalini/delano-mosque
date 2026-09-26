@@ -718,7 +718,7 @@
 
 .history-page__eyebrow {
   margin: 0;
-  color: var(--color-gold);
+  color: color-mix(in srgb, var(--program-accent) 76%, var(--color-heading));
   font-family: var(--font-ui);
   font-size: 0.78rem;
   font-weight: 800;
@@ -2219,6 +2219,699 @@
   }
 }
 
+.site-main--programs {
+  padding-block: clamp(4.5rem, 7vw, 7rem) clamp(6rem, 9vw, 9rem);
+}
+
+.programs-page {
+  width: min(100%, var(--content-max));
+  margin-inline: auto;
+  font-synthesis: none;
+}
+
+.programs-page__intro {
+  max-width: 52rem;
+}
+
+.programs-page__eyebrow {
+  margin: 0 0 0.75rem;
+  color: var(--color-gold);
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.programs-page__title {
+  max-width: 18ch;
+  margin: 0;
+  color: var(--color-heading);
+  font-size: clamp(3rem, 6vw, 5.4rem);
+  line-height: 1.02;
+  text-wrap: balance;
+}
+
+.programs-page__description {
+  max-width: 42rem;
+  margin: 1.15rem 0 0;
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 1.45vw, 1.12rem);
+  line-height: 1.7;
+}
+
+.programs-selector {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: clamp(1rem, 2vw, 1.4rem);
+  row-gap: 0;
+  margin-top: clamp(2.75rem, 6vw, 4.75rem);
+}
+
+.programs-selector__item {
+  display: contents;
+}
+
+.programs-selector__item:nth-child(1) > .program-card {
+  grid-column: 1;
+}
+
+.programs-selector__item:nth-child(2) > .program-card {
+  grid-column: 2;
+}
+
+.programs-selector__item:nth-child(3) > .program-card {
+  grid-column: 3;
+}
+
+.program-card {
+  --program-accent: var(--color-masjid-green);
+
+  position: relative;
+  display: flex;
+  min-height: 18rem;
+  align-items: flex-start;
+  flex-direction: column;
+  grid-row: 1;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: clamp(1.35rem, 2.5vw, 1.75rem);
+  background:
+    radial-gradient(
+      circle at 18% 4%,
+      color-mix(in srgb, var(--program-accent) 25%, transparent),
+      transparent 56%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-masjid-green) 9%, transparent),
+      transparent 62%
+    ),
+    var(--color-surface);
+  box-shadow: 0 14px 38px rgb(0 0 0 / 13%);
+  color: var(--color-text);
+  cursor: pointer;
+  font: inherit;
+  text-align: start;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    transform 180ms ease;
+}
+
+.program-card[data-program='quran'] {
+  --program-accent: #9667b4;
+}
+
+.program-card[data-program='weekend-youth'] {
+  --program-accent: #4f88bd;
+}
+
+.program-card[data-program='mabeet'] {
+  --program-accent: #b46752;
+}
+
+.program-card__geometric-frame {
+  --program-card-pattern-stroke: color-mix(
+    in srgb,
+    var(--color-gold) 44%,
+    transparent
+  );
+
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  opacity: 0.86;
+  pointer-events: none;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--color-gold) 42%, transparent),
+    inset 0 0 0 13px color-mix(in srgb, var(--color-gold) 4%, transparent);
+  transition: opacity 180ms ease;
+  -webkit-mask:
+    linear-gradient(#000 0 0) top / 100% 15px no-repeat,
+    linear-gradient(#000 0 0) right / 15px 100% no-repeat,
+    linear-gradient(#000 0 0) bottom / 100% 15px no-repeat,
+    linear-gradient(#000 0 0) left / 15px 100% no-repeat;
+  mask:
+    linear-gradient(#000 0 0) top / 100% 15px no-repeat,
+    linear-gradient(#000 0 0) right / 15px 100% no-repeat,
+    linear-gradient(#000 0 0) bottom / 100% 15px no-repeat,
+    linear-gradient(#000 0 0) left / 15px 100% no-repeat;
+}
+
+.program-card__geometric-frame .twelve-fold-pattern {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.program-card__geometric-frame .twelve-fold-pattern path {
+  fill: none;
+  stroke: var(--program-card-pattern-stroke);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 0.72;
+  vector-effect: non-scaling-stroke;
+}
+
+.program-card:hover {
+  border-color: color-mix(in srgb, var(--color-sand) 36%, transparent);
+  box-shadow: 0 18px 44px rgb(0 0 0 / 21%);
+  transform: translateY(-2px);
+}
+
+.program-card[aria-expanded='true'] {
+  border-color: color-mix(in srgb, var(--color-gold) 78%, transparent);
+  background:
+    radial-gradient(
+      circle at 18% 4%,
+      color-mix(in srgb, var(--program-accent) 34%, transparent),
+      transparent 58%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-gold) 8%, transparent),
+      transparent 48%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-masjid-green) 18%, transparent),
+      transparent 68%
+    ),
+    var(--color-surface);
+  box-shadow:
+    0 18px 44px rgb(0 0 0 / 22%),
+    inset 0 0 0 1px color-mix(in srgb, var(--color-gold) 16%, transparent);
+}
+
+.program-card[aria-expanded='true'] .program-card__geometric-frame {
+  --program-card-pattern-stroke: color-mix(
+    in srgb,
+    var(--color-gold) 70%,
+    transparent
+  );
+
+  opacity: 0.9;
+}
+
+.program-card__icon {
+  position: relative;
+  display: inline-flex;
+  width: 3.25rem;
+  height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-gold) 42%, transparent);
+  border-radius: 0.85rem;
+  background:
+    radial-gradient(
+      circle at 28% 22%,
+      color-mix(in srgb, var(--program-accent) 28%, transparent),
+      transparent 64%
+    ),
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-cream) 7%, transparent),
+      transparent 58%
+    ),
+    color-mix(in srgb, var(--color-masjid-green) 21%, var(--color-surface));
+  color: color-mix(in srgb, var(--program-accent) 82%, var(--color-heading));
+  box-shadow: 0 0 0 1px
+    color-mix(in srgb, var(--program-accent) 18%, transparent);
+}
+
+.program-card__icon::before {
+  position: absolute;
+  inset: -18%;
+  background-image: url('/assets/patterns/subtle-floral-rosette.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 4.35rem;
+  content: '';
+  opacity: 0.1;
+  transform: rotate(7deg);
+}
+
+.program-card__icon::after {
+  position: absolute;
+  inset: 0.2rem;
+  border: 1px solid color-mix(in srgb, var(--color-sand) 10%, transparent);
+  border-radius: 0.64rem;
+  content: '';
+}
+
+.program-card__icon svg {
+  position: relative;
+  z-index: 1;
+  width: 1.65rem;
+  height: 1.65rem;
+  filter: drop-shadow(0 1px 4px rgb(0 0 0 / 28%));
+}
+
+.program-card__quran-icon {
+  position: relative;
+  z-index: 1;
+  width: 1.72rem;
+  height: 1.72rem;
+  background: currentColor;
+  filter: drop-shadow(0 1px 4px rgb(0 0 0 / 28%));
+  -webkit-mask: url('/assets/icons/quran-icon.svg') center / contain no-repeat;
+  mask: url('/assets/icons/quran-icon.svg') center / contain no-repeat;
+}
+
+.program-card[aria-expanded='true'] .program-card__icon {
+  border-color: color-mix(in srgb, var(--color-gold) 68%, transparent);
+  background:
+    linear-gradient(
+      145deg,
+      color-mix(in srgb, var(--color-cream) 10%, transparent),
+      transparent 58%
+    ),
+    color-mix(in srgb, var(--color-masjid-green) 28%, var(--color-surface));
+  color: color-mix(in srgb, var(--program-accent) 88%, var(--color-heading));
+}
+
+.program-card__title {
+  display: block;
+  margin-top: 1.25rem;
+  color: var(--color-heading);
+  font-size: clamp(1.65rem, 2.6vw, 2rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.program-card__tagline {
+  display: block;
+  margin-top: 0.7rem;
+  color: var(--color-text-muted);
+  font-size: 0.91rem;
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.program-card__meta {
+  display: block;
+  margin-top: 1rem;
+  color: color-mix(in srgb, var(--color-sand) 80%, var(--color-text));
+  font-size: 0.76rem;
+  font-weight: 750;
+  letter-spacing: 0.035em;
+  line-height: 1.5;
+}
+
+.program-card__action {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-top: auto;
+  padding-top: 1.35rem;
+  color: var(--color-heading);
+  font-size: 0.81rem;
+  font-weight: 800;
+}
+
+.program-card__chevron {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  color: var(--color-gold);
+  transition: transform 180ms ease;
+}
+
+.program-card[aria-expanded='true'] .program-card__chevron {
+  transform: rotate(180deg);
+}
+
+.program-detail-shell {
+  z-index: 0;
+  display: grid;
+  min-height: 0;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  grid-template-rows: 0fr;
+  margin-top: 0;
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transition:
+    grid-template-rows 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    margin-top 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease-out,
+    visibility 0s linear 300ms;
+}
+
+.program-detail-shell[aria-hidden='false'] {
+  z-index: 1;
+  grid-template-rows: 1fr;
+  margin-top: clamp(0.5rem, 1.5vw, 1rem);
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
+  transition:
+    grid-template-rows 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    margin-top 300ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 180ms ease-out,
+    visibility 0s linear 0s;
+}
+
+.program-detail-shell__clip {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.program-detail {
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--color-sand) 26%, transparent);
+  border-radius: var(--radius-md);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, var(--color-masjid-green) 11%, transparent),
+      transparent 42%
+    ),
+    var(--color-surface);
+  box-shadow: var(--shadow-soft);
+}
+
+.program-detail::before,
+.program-detail::after {
+  position: absolute;
+  width: 2.65rem;
+  height: 2.65rem;
+  background-image: url('/assets/patterns/subtle-floral-rosette.svg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 3.8rem;
+  content: '';
+  opacity: 0.12;
+  pointer-events: none;
+}
+
+.program-detail::before {
+  inset-block-start: -0.45rem;
+  inset-inline-start: -0.45rem;
+}
+
+.program-detail::after {
+  inset-block-end: -0.45rem;
+  inset-inline-end: -0.45rem;
+  transform: rotate(180deg);
+}
+
+.program-detail__content {
+  position: relative;
+  z-index: 1;
+  opacity: 0;
+  transform: translateY(5px);
+  transition:
+    opacity 210ms ease-out,
+    transform 280ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.program-detail-shell[aria-hidden='false'] .program-detail__content {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 55ms;
+}
+
+.program-detail__header,
+.program-detail__sections,
+.program-detail__audience {
+  position: relative;
+  z-index: 1;
+}
+
+.program-detail__header {
+  max-width: 52rem;
+}
+
+.program-detail__mosque {
+  margin: 0;
+  color: var(--color-gold);
+  font-size: 0.73rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.program-detail__title {
+  margin: 0.75rem 0 0;
+  color: var(--color-heading);
+  font-size: clamp(2.15rem, 4vw, 3.65rem);
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.program-detail__tagline {
+  margin: 1rem 0 0;
+  color: color-mix(in srgb, var(--color-sand) 88%, var(--color-text));
+  font-family: var(--font-editorial);
+  font-size: clamp(1.14rem, 2vw, 1.38rem);
+  font-style: italic;
+  line-height: 1.55;
+}
+
+.program-detail__introduction {
+  margin: 0.8rem 0 0;
+  color: var(--color-text-muted);
+  font-size: clamp(1rem, 1.4vw, 1.1rem);
+  line-height: 1.72;
+}
+
+.program-detail__sections {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.25rem, 2.5vw, 2rem);
+  margin-top: clamp(2rem, 4vw, 3.25rem);
+}
+
+.program-detail__section {
+  border-top: 1px solid color-mix(in srgb, var(--color-gold) 44%, transparent);
+  padding-top: 1.35rem;
+}
+
+.program-detail__section-title {
+  margin: 0 0 1rem;
+  color: var(--color-heading);
+  font-size: clamp(1.55rem, 2.5vw, 2rem);
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+.program-detail__list {
+  display: grid;
+  gap: 0.8rem;
+  margin: 0;
+  padding-inline-start: 1.35rem;
+  color: var(--color-text);
+}
+
+ul.program-detail__list {
+  list-style: disc;
+}
+
+ol.program-detail__list {
+  list-style: decimal;
+}
+
+.program-detail__list li {
+  padding-inline-start: 0.18rem;
+  font-size: 0.98rem;
+  line-height: 1.62;
+}
+
+.program-detail__list li::marker {
+  color: var(--color-gold);
+  font-weight: 800;
+}
+
+.program-detail__list strong,
+.program-detail__audience strong {
+  color: var(--color-heading);
+}
+
+.program-detail__audience {
+  margin: clamp(2rem, 4vw, 3rem) 0 0;
+  border-inline-start: 2px solid var(--color-gold);
+  padding: 1rem 1.15rem;
+  background: linear-gradient(
+    110deg,
+    color-mix(in srgb, var(--color-gold) 8%, transparent),
+    transparent 78%
+  );
+  color: var(--color-text);
+  font-size: 1rem;
+  line-height: 1.65;
+}
+
+[dir='rtl'] .programs-page__eyebrow,
+[dir='rtl'] .program-detail__mosque {
+  font-family: var(--font-editorial);
+  font-size: 0.98rem;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+[dir='rtl'] .program-card__tagline,
+[dir='rtl'] .program-card__meta,
+[dir='rtl'] .program-card__action,
+[dir='rtl'] .program-detail__tagline,
+[dir='rtl'] .program-detail__introduction,
+[dir='rtl'] .program-detail__list,
+[dir='rtl'] .program-detail__audience,
+[dir='rtl'] .programs-page__description {
+  font-family: var(--font-editorial);
+}
+
+[dir='rtl'] .program-card__tagline,
+[dir='rtl'] .program-card__meta,
+[dir='rtl'] .program-card__action {
+  font-size: 1rem;
+}
+
+[dir='rtl'] .program-detail__introduction,
+[dir='rtl'] .program-detail__list li,
+[dir='rtl'] .program-detail__audience,
+[dir='rtl'] .programs-page__description {
+  font-size: 1.12rem;
+  line-height: 1.85;
+}
+
+[dir='rtl'] .program-detail__audience {
+  background: linear-gradient(
+    250deg,
+    color-mix(in srgb, var(--color-gold) 8%, transparent),
+    transparent 78%
+  );
+}
+
+@media (max-width: 62rem) {
+  .programs-selector {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .programs-selector__item:nth-child(1) > .program-card {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .programs-selector__item:nth-child(2) > .program-card {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .programs-selector__item:nth-child(3) > .program-card {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    min-height: 15rem;
+    margin-top: clamp(1rem, 2vw, 1.4rem);
+  }
+
+  .program-detail-shell {
+    grid-row: 3;
+  }
+}
+
+@media (max-width: 42rem) {
+  .site-main--programs {
+    padding-block: 4rem 5rem;
+    padding-inline: 1rem;
+  }
+
+  .programs-page__title {
+    font-size: clamp(2.75rem, 14vw, 3.65rem);
+  }
+
+  .programs-selector {
+    display: block;
+    margin-top: 2.5rem;
+  }
+
+  .programs-selector__item {
+    display: grid;
+    gap: 0;
+  }
+
+  .programs-selector__item + .programs-selector__item {
+    margin-top: 1rem;
+  }
+
+  .programs-selector__item:nth-child(n) > .program-card,
+  .program-detail-shell {
+    grid-column: auto;
+    grid-row: auto;
+  }
+
+  .programs-selector__item:nth-child(n) > .program-card {
+    min-height: 0;
+  }
+
+  .programs-selector__item:nth-child(3) > .program-card {
+    margin-top: 0;
+  }
+
+  .program-card {
+    padding: 1.3rem;
+  }
+
+  .program-card__icon {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .program-card__title {
+    font-size: 1.7rem;
+  }
+
+  .program-card__action {
+    margin-top: 1.2rem;
+  }
+
+  .program-detail {
+    padding: 1.35rem;
+    box-shadow: 0 14px 38px rgb(0 0 0 / 22%);
+  }
+
+  .program-detail::before,
+  .program-detail::after {
+    width: 1.6rem;
+    height: 1.6rem;
+    background-size: 2.5rem;
+    opacity: 0.1;
+  }
+
+  .program-detail::before {
+    inset-block-start: -0.35rem;
+    inset-inline-start: -0.35rem;
+  }
+
+  .program-detail::after {
+    inset-block-end: -0.35rem;
+    inset-inline-end: -0.35rem;
+  }
+
+  .program-detail__title {
+    font-size: clamp(2rem, 10vw, 2.75rem);
+  }
+
+  .program-detail__sections {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1.75rem;
+  }
+
+  .program-detail__section-title {
+    font-size: 1.55rem;
+  }
+}
+
 @media (max-width: 68rem) {
   .site-header__right {
     gap: 1rem;
@@ -2684,5 +3377,10 @@
 
   .community-photo-carousel__track {
     scroll-behavior: auto;
+  }
+
+  .program-detail-shell,
+  .program-detail__content {
+    transition: none !important;
   }
 }

@@ -57,7 +57,11 @@
     },
     "programs": {
       "title": "Programas",
-      "placeholder": "Aquí aparecerán los próximos programas y actividades comunitarias de la mezquita."
+      "eyebrow": "Aprendizaje y comunidad",
+      "introduction": "Descubre oportunidades de aprendizaje del Corán, desarrollo juvenil, fe y convivencia en la mezquita.",
+      "selectionLabel": "Elige un programa para ver sus detalles",
+      "viewDetails": "Ver detalles del programa",
+      "hideDetails": "Ocultar detalles del programa"
     },
     "donate": {
       "title": "Donar"

@@ -10,13 +10,16 @@ export function PublicLayout() {
   const isHome = location.pathname === '/'
   const isVisit = location.pathname === '/visit'
   const isAbout = location.pathname === '/about'
+  const isPrograms = location.pathname === '/programs'
   const mainClassName = isHome
     ? 'site-main site-main--home'
     : isVisit
       ? 'site-main site-main--visit'
       : isAbout
         ? 'site-main site-main--about'
-        : 'site-main'
+        : isPrograms
+          ? 'site-main site-main--programs'
+          : 'site-main'
 
   useEffect(() => {
     window.dispatchEvent(new PopStateEvent('popstate'))
