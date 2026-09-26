@@ -1,5 +1,32 @@
 {
   "siteName": "Abu Bakr Al-Siddiq Mosque",
+  "seo": {
+    "socialImageAlt": "Abu Bakr Al-Siddiq Mosque logo",
+    "home": {
+      "title": "Abu Bakr Al-Siddiq Mosque | Delano, California",
+      "description": "Official website of Abu Bakr Al-Siddiq Mosque in Delano, California. Find prayer times, programs, visitor information, community resources, and ways to support the mosque."
+    },
+    "visit": {
+      "title": "Visit Abu Bakr Al-Siddiq Mosque | Delano, California",
+      "description": "Plan your visit to Abu Bakr Al-Siddiq Mosque in Delano, California. Find the mosque address, directions, visitor information, and available facilities."
+    },
+    "programs": {
+      "title": "Programs | Abu Bakr Al-Siddiq Mosque",
+      "description": "Explore Quran learning, weekend youth activities, and overnight youth programs at Abu Bakr Al-Siddiq Mosque in Delano."
+    },
+    "about": {
+      "title": "About Abu Bakr Al-Siddiq Mosque | Delano",
+      "description": "Learn about the history of Abu Bakr Al-Siddiq Mosque and the Muslim community it serves in Delano, California."
+    },
+    "notFound": {
+      "title": "Page Not Found | Abu Bakr Al-Siddiq Mosque",
+      "description": "The requested page could not be found."
+    },
+    "internal": {
+      "title": "Mosque Display | Abu Bakr Al-Siddiq Mosque",
+      "description": "Internal mosque display."
+    }
+  },
   "language": {
     "label": "Language"
   },

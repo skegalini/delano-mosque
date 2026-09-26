@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Outlet, useLocation } from 'react-router-dom'
 
 import { DonationDialogProvider } from '../donation/DonationDialogProvider'
+import { SiteMetadata } from '../seo/SiteMetadata'
 import { PublicFooter } from './PublicFooter'
 import { PublicHeader } from './PublicHeader'
 
@@ -27,6 +28,7 @@ export function PublicLayout() {
 
   return (
     <DonationDialogProvider>
+      <SiteMetadata />
       <div className="site-shell">
         <PublicHeader />
 

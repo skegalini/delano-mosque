@@ -1,4 +1,31 @@
 {
+  "seo": {
+    "socialImageAlt": "Logotipo de la Mezquita Abu Bakr Al-Siddiq",
+    "home": {
+      "title": "Mezquita Abu Bakr Al-Siddiq | Delano, California",
+      "description": "Sitio web oficial de la Mezquita Abu Bakr Al-Siddiq en Delano, California. Consulta los horarios de oración, programas, información para visitantes, recursos comunitarios y formas de apoyar a la mezquita."
+    },
+    "visit": {
+      "title": "Visita la Mezquita Abu Bakr Al-Siddiq | Delano",
+      "description": "Planifica tu visita a la Mezquita Abu Bakr Al-Siddiq en Delano, California. Encuentra la dirección, cómo llegar, información para visitantes y los servicios disponibles."
+    },
+    "programs": {
+      "title": "Programas | Mezquita Abu Bakr Al-Siddiq",
+      "description": "Conoce los programas de aprendizaje del Corán, actividades juveniles de fin de semana y retiros nocturnos para jóvenes en la Mezquita Abu Bakr Al-Siddiq de Delano."
+    },
+    "about": {
+      "title": "Acerca de la Mezquita Abu Bakr Al-Siddiq | Delano",
+      "description": "Conoce la historia de la Mezquita Abu Bakr Al-Siddiq y de la comunidad musulmana a la que sirve en Delano, California."
+    },
+    "notFound": {
+      "title": "Página no encontrada | Mezquita Abu Bakr Al-Siddiq",
+      "description": "No se pudo encontrar la página solicitada."
+    },
+    "internal": {
+      "title": "Pantalla de la mezquita | Mezquita Abu Bakr Al-Siddiq",
+      "description": "Pantalla interna de la mezquita."
+    }
+  },
   "language": {
     "label": "Idioma"
   },

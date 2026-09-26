@@ -8,7 +8,7 @@ export const mosqueData = {
       ar: 'مسجد أبي بكر الصديق',
     },
     address: '1130 Kensington St, Delano, CA 93215',
-    plannedDomain: 'delanomosque.org',
+    canonicalDomain: 'delanomosque.org',
   },
   timezone: prayerCalculationConfig.location.timezone,
   visitorFacilities: {

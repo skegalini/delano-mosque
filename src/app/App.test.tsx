@@ -42,6 +42,84 @@ describe('application foundation', () => {
     ).toHaveAttribute('src', '/assets/brand/abu-bakr-logo-dark-clean.png')
   })
 
+  it.each([
+    [
+      '/',
+      'Abu Bakr Al-Siddiq Mosque | Delano, California',
+      'https://delanomosque.org/',
+      'Official website of Abu Bakr Al-Siddiq Mosque in Delano, California.',
+    ],
+    [
+      '/visit',
+      'Visit Abu Bakr Al-Siddiq Mosque | Delano, California',
+      'https://delanomosque.org/visit',
+      'Plan your visit to Abu Bakr Al-Siddiq Mosque in Delano, California.',
+    ],
+    [
+      '/programs',
+      'Programs | Abu Bakr Al-Siddiq Mosque',
+      'https://delanomosque.org/programs',
+      'Explore Quran learning, weekend youth activities, and overnight youth programs',
+    ],
+    [
+      '/about',
+      'About Abu Bakr Al-Siddiq Mosque | Delano',
+      'https://delanomosque.org/about',
+      'Learn about the history of Abu Bakr Al-Siddiq Mosque',
+    ],
+  ])(
+    'sets indexable production metadata for %s',
+    (path, title, canonicalUrl, descriptionStart) => {
+      renderRoute(path)
+
+      expect(document.title).toBe(title)
+      expect(
+        document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]'),
+      ).toHaveAttribute('href', canonicalUrl)
+      expect(
+        document.head.querySelector<HTMLMetaElement>('meta[name="description"]')
+          ?.content,
+      ).toContain(descriptionStart)
+      expect(
+        document.head.querySelector<HTMLMetaElement>('meta[name="robots"]'),
+      ).toHaveAttribute('content', 'index, follow')
+      expect(
+        document.head.querySelector<HTMLMetaElement>('meta[property="og:url"]'),
+      ).toHaveAttribute('content', canonicalUrl)
+      expect(
+        document.head.querySelector<HTMLMetaElement>(
+          'meta[name="twitter:title"]',
+        ),
+      ).toHaveAttribute('content', title)
+    },
+  )
+
+  it('publishes factual mosque structured data on indexable pages', () => {
+    renderRoute('/')
+
+    const structuredDataElement =
+      document.head.querySelector<HTMLScriptElement>('#mosque-structured-data')
+    const structuredData = JSON.parse(structuredDataElement?.text ?? '{}')
+
+    expect(structuredData).toMatchObject({
+      '@context': 'https://schema.org',
+      '@type': ['Mosque', 'ReligiousOrganization'],
+      '@id': 'https://delanomosque.org/#mosque',
+      name: 'Abu Bakr Al-Siddiq Mosque',
+      url: 'https://delanomosque.org/',
+      logo: 'https://delanomosque.org/assets/brand/abu-bakr-logo-dark-clean.png',
+      email: 'delanomosque@gmail.com',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '1130 Kensington St',
+        addressLocality: 'Delano',
+        addressRegion: 'CA',
+        postalCode: '93215',
+        addressCountry: 'US',
+      },
+    })
+  })
+
   it.each(['/history', '/admin'])(
     'renders the public not-found page for removed route %s',
     (path) => {
@@ -50,8 +128,25 @@ describe('application foundation', () => {
       expect(
         screen.getByRole('heading', { name: 'Page not found' }),
       ).toBeInTheDocument()
+      expect(
+        document.head.querySelector<HTMLMetaElement>('meta[name="robots"]'),
+      ).toHaveAttribute('content', 'noindex, nofollow')
+      expect(
+        document.head.querySelector('link[rel="canonical"]'),
+      ).not.toBeInTheDocument()
     },
   )
+
+  it('keeps the internal display route out of the search index', () => {
+    renderRoute('/display')
+
+    expect(
+      document.head.querySelector<HTMLMetaElement>('meta[name="robots"]'),
+    ).toHaveAttribute('content', 'noindex, nofollow')
+    expect(
+      document.head.querySelector('link[rel="canonical"]'),
+    ).not.toBeInTheDocument()
+  })
 
   it('renders the approved About history in the selected language', async () => {
     const user = userEvent.setup()

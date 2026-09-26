@@ -8,7 +8,7 @@ describe('initial mosque data', () => {
         ar: 'مسجد أبي بكر الصديق',
       },
       address: '1130 Kensington St, Delano, CA 93215',
-      plannedDomain: 'delanomosque.org',
+      canonicalDomain: 'delanomosque.org',
     })
     expect(mosqueData.timezone).toBe('America/Los_Angeles')
   })
