@@ -2752,6 +2752,33 @@ ol.program-detail__list {
   line-height: 1.65;
 }
 
+.program-detail__contact {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  margin: 1rem 0 0;
+  padding-top: 1rem;
+  border-top: 1px solid color-mix(in srgb, var(--color-gold) 22%, transparent);
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.program-detail__contact > svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  flex: none;
+  color: var(--color-gold);
+}
+
+.program-detail__contact a {
+  color: var(--color-gold);
+  font-weight: 750;
+  overflow-wrap: anywhere;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.18em;
+}
+
 [dir='rtl'] .programs-page__eyebrow,
 [dir='rtl'] .program-detail__mosque {
   font-family: var(--font-editorial);

@@ -1,5 +1,6 @@
 import {
   IconChevronDown,
+  IconMail,
   IconMoonStars,
   IconUsersGroup,
   type Icon,
@@ -20,11 +21,15 @@ const programIcons: Record<Exclude<ProgramIcon, 'quran'>, Icon> = {
   moon: IconMoonStars,
 }
 
+const programContactEmail = 'delanomosque@gmail.com'
+
 function ProgramDetails({
+  contactLabel,
   expanded,
   language,
   program,
 }: {
+  contactLabel: string
   expanded: boolean
   language: string
   program: MosqueProgram
@@ -87,6 +92,15 @@ function ProgramDetails({
             <p className="program-detail__audience">
               <strong>{localize(program.audience.label)}:</strong>{' '}
               {localize(program.audience.body)}
+            </p>
+            <p className="program-detail__contact">
+              <IconMail aria-hidden="true" stroke={1.6} />
+              <span>
+                {contactLabel}{' '}
+                <a href={`mailto:${programContactEmail}`}>
+                  <bdi>{programContactEmail}</bdi>
+                </a>
+              </span>
             </p>
           </div>
         </div>
@@ -181,6 +195,7 @@ export function ProgramsPage() {
               </button>
 
               <ProgramDetails
+                contactLabel={t('pages.programs.contactLabel')}
                 expanded={isExpanded}
                 language={language}
                 program={program}

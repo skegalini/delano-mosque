@@ -50,6 +50,11 @@ describe('Programs page', () => {
     expect(quranDetails).toHaveTextContent(
       'Tailored learning tracks for children, youth, and adults.',
     )
+    expect(
+      within(quranDetails).getByRole('link', {
+        name: 'delanomosque@gmail.com',
+      }),
+    ).toHaveAttribute('href', 'mailto:delanomosque@gmail.com')
 
     await user.click(weekendButton)
 
