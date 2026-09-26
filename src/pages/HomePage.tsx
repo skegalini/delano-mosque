@@ -5,6 +5,7 @@ import { GeometricBorder } from '../components/layout/GeometricBorder'
 import { JummahInformation } from '../components/prayer/JummahInformation'
 import { PrayerTimes } from '../components/prayer/PrayerTimes'
 import { mosqueData } from '../data/mosque'
+import { resolveLocalizedContent } from '../domain/localization'
 
 const mosqueMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
   `${mosqueData.identity.canonicalName.en} ${mosqueData.identity.address}`,
@@ -37,15 +38,54 @@ function scrollToPrayerTimes(event: MouseEvent<HTMLAnchorElement>) {
 }
 
 export function HomePage() {
-  const { t } = useTranslation()
+  const { i18n, t } = useTranslation()
+  const mosqueName =
+    resolveLocalizedContent(
+      mosqueData.identity.canonicalName,
+      i18n.resolvedLanguage ?? 'en',
+    ) ?? t('siteName')
+  const mosqueTitleLines =
+    mosqueName === mosqueData.identity.canonicalName.en
+      ? ['Abu Bakr', 'Al-Siddiq Mosque']
+      : [mosqueName]
 
   return (
     <>
       <section className="home-hero" aria-labelledby="home-title">
         <div className="home-hero__content">
-          <h1 className="home-hero__title font-display" id="home-title">
-            {t('pages.home.hero.title')}
+          <h1
+            aria-label={mosqueName}
+            className="home-hero__title font-display"
+            id="home-title"
+          >
+            {mosqueTitleLines.map((line) => (
+              <span
+                aria-hidden="true"
+                className="home-hero__title-line"
+                data-text={line}
+                key={line}
+              >
+                {line}
+              </span>
+            ))}
           </h1>
+          <span aria-hidden="true" className="home-hero__divider">
+            <span className="home-hero__divider-rule home-hero__divider-rule--start" />
+            <span className="home-hero__divider-diamond" />
+            <span className="home-hero__divider-rosette">
+              <svg viewBox="0 0 32 32">
+                <path d="m16 2 2.72 3.86L23 3.88l.42 4.7L28.12 9l-1.98 4.28L30 16l-3.86 2.72L28.12 23l-4.7.42L23 28.12l-4.28-1.98L16 30l-2.72-3.86L9 28.12l-.42-4.7L3.88 23l1.98-4.28L2 16l3.86-2.72L3.88 9l4.7-.42L9 3.88l4.28 1.98Z" />
+                <circle cx="16" cy="16" r="8.25" />
+                <path d="m16 7 2.3 6.7L25 11l-4.7 5 4.7 5-6.7-2.7L16 25l-2.3-6.7L7 21l4.7-5L7 11l6.7 2.7Z" />
+                <circle cx="16" cy="16" r="2.2" />
+              </svg>
+            </span>
+            <span className="home-hero__divider-diamond" />
+            <span className="home-hero__divider-rule home-hero__divider-rule--end" />
+          </span>
+          <p className="home-hero__tagline font-display">
+            {t('pages.home.hero.title')}
+          </p>
           <a
             aria-label={t('pages.home.hero.mapsLabel')}
             className="home-hero__identity"
@@ -53,7 +93,6 @@ export function HomePage() {
             rel="noopener noreferrer"
             target="_blank"
           >
-            <span>{t('siteName')}</span>
             <span className="home-hero__location">
               <MaterialLocationOnFilled aria-hidden="true" />
               {t('pages.home.hero.location')}

@@ -27,11 +27,21 @@ describe('application foundation', () => {
   it('renders the home route', () => {
     renderRoute('/')
 
+    const homeTitle = screen.getByRole('heading', {
+      name: 'Abu Bakr Al-Siddiq Mosque',
+    })
+
+    expect(homeTitle).toBeInTheDocument()
     expect(
-      screen.getByRole('heading', {
-        name: 'A House of Worship, Learning, and Community.',
-      }),
-    ).toBeInTheDocument()
+      Array.from(
+        homeTitle.querySelectorAll<HTMLElement>('.home-hero__title-line'),
+        (line) => line.textContent,
+      ),
+    ).toEqual(['Abu Bakr', 'Al-Siddiq Mosque'])
+    expect(
+      screen.getByText('A House of Worship, Learning, and Community.'),
+    ).toHaveClass('home-hero__tagline', 'font-display')
+    expect(document.querySelector('.home-hero__divider')).toBeInTheDocument()
     expect(
       screen
         .getAllByRole('link', { name: 'Prayer Times' })
@@ -331,9 +341,13 @@ describe('application foundation', () => {
     expect(document.documentElement).toHaveAttribute('dir', 'rtl')
     expect(
       screen.getByRole('heading', {
-        name: 'بيت للعبادة والعلم والمجتمع.',
+        name: 'مسجد أبي بكر الصديق',
       }),
     ).toBeInTheDocument()
+    expect(screen.getByText('بيت للعبادة والعلم والمجتمع.')).toHaveClass(
+      'home-hero__tagline',
+      'font-display',
+    )
     expect(
       screen.getByRole('link', { name: 'ديلانو، كاليفورنيا' }),
     ).toBeInTheDocument()

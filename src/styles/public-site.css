@@ -1547,6 +1547,8 @@
 }
 
 .home-hero {
+  --home-hero-gold: var(--prayer-eyebrow);
+
   position: relative;
   display: grid;
   min-height: clamp(31rem, 68vh, 43rem);
@@ -1612,7 +1614,7 @@
   position: relative;
   z-index: 2;
   display: flex;
-  width: min(100%, 52rem);
+  width: min(100%, 58rem);
   flex-direction: column;
   align-items: center;
   padding: clamp(5rem, 10vw, 8rem) var(--page-gutter);
@@ -1620,46 +1622,128 @@
 }
 
 .home-hero__title {
+  display: flex;
+  width: 100%;
+  max-width: 58rem;
+  flex-direction: column;
+  align-items: center;
   margin: 0;
   color: var(--color-heading);
-  font-size: clamp(2.8rem, 5.2vw, 5.25rem);
+  font-size: clamp(3.35rem, 6.5vw, 6.35rem);
   line-height: 1.08;
   text-wrap: balance;
 }
 
-.home-hero__identity > span {
+.home-hero__title-line {
+  position: relative;
   display: block;
+  max-width: 100%;
+  color: var(--color-heading);
+  -webkit-text-stroke: 0.3px
+    color-mix(in srgb, var(--home-hero-gold) 24%, transparent);
+  text-shadow:
+    0 0.012em 0 color-mix(in srgb, var(--home-hero-gold) 20%, transparent),
+    0 0.09em 0.3em rgb(0 0 0 / 24%),
+    0 0 0.6em color-mix(in srgb, var(--home-hero-gold) 7%, transparent);
+  white-space: nowrap;
+}
+
+.home-hero__title-line::after {
+  position: absolute;
+  inset: 0;
+  background: var(--home-hero-gold);
+  background-clip: text;
+  color: transparent;
+  content: attr(data-text);
+  -webkit-mask-image: url('/assets/patterns/subtle-floral-rosette.svg');
+  mask-image: url('/assets/patterns/subtle-floral-rosette.svg');
+  -webkit-mask-position: center;
+  mask-position: center;
+  -webkit-mask-repeat: repeat;
+  mask-repeat: repeat;
+  -webkit-mask-size: 7rem 7rem;
+  mask-size: 7rem 7rem;
+  opacity: 0.09;
+  pointer-events: none;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-hero__divider {
+  display: grid;
+  width: min(32rem, 82vw);
+  height: 2.15rem;
+  grid-template-columns: minmax(2rem, 1fr) 0.45rem 2.15rem 0.45rem minmax(
+      2rem,
+      1fr
+    );
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  color: var(--home-hero-gold);
+}
+
+.home-hero__divider-rule {
+  height: 1px;
+}
+
+.home-hero__divider-rule--start {
+  background: linear-gradient(90deg, transparent, currentColor 34%);
+}
+
+.home-hero__divider-rule--end {
+  background: linear-gradient(90deg, currentColor 66%, transparent);
+}
+
+.home-hero__divider-diamond {
+  width: 0.42rem;
+  height: 0.42rem;
+  justify-self: center;
+  background: currentColor;
+  transform: rotate(45deg);
+}
+
+.home-hero__divider-rosette {
+  display: grid;
+  width: 2.15rem;
+  height: 2.15rem;
+  place-items: center;
+}
+
+.home-hero__divider-rosette svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1;
+}
+
+.home-hero__tagline {
+  max-width: 38rem;
+  margin: 0.55rem 0 0;
+  color: var(--home-hero-gold);
+  font-size: clamp(1.35rem, 2.25vw, 1.75rem);
+  font-weight: 400;
+  line-height: 1.45;
+  text-wrap: balance;
 }
 
 .home-hero__identity {
   display: inline-flex;
-  flex-direction: column;
   align-items: center;
-  margin: 1.75rem 0 0;
+  margin: 0.8rem 0 0;
   border-radius: var(--radius-sm);
-  color: var(--color-text);
-  font-weight: 650;
-  line-height: 1.65;
-  text-decoration: none;
-}
-
-.home-hero__identity > span:first-child {
-  font-size: 1rem;
-  transition: color 160ms ease;
-}
-
-.home-hero__identity span:last-child {
   color: var(--color-text-muted);
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 500;
+  line-height: 1.5;
+  text-decoration: none;
   transition: color 160ms ease;
 }
 
-.home-hero__identity:hover > span:first-child {
-  color: color-mix(in srgb, var(--color-gold) 64%, var(--color-heading));
-}
-
-.home-hero__identity:hover .home-hero__location {
+.home-hero__identity:hover {
   color: color-mix(in srgb, var(--color-gold) 52%, var(--color-text));
 }
 
@@ -1778,7 +1862,7 @@
   width: 1.7rem;
   height: 1.7rem;
   flex: none;
-  color: var(--color-gold);
+  color: var(--home-hero-gold, var(--prayer-eyebrow));
 }
 
 [dir='rtl'] .jummah-note__icon {
@@ -3148,9 +3232,14 @@ ol.program-detail__list {
   }
 
   .home-hero__title {
-    max-width: 35rem;
-    font-size: clamp(2.55rem, 9.5vw, 4.1rem);
+    max-width: 40rem;
+    font-size: clamp(2.9rem, 10.5vw, 4.85rem);
     line-height: 1.07;
+  }
+
+  .home-hero__tagline {
+    max-width: 31rem;
+    font-size: clamp(1.15rem, 3.2vw, 1.4rem);
   }
 
   .geometric-border--section {
@@ -3294,7 +3383,11 @@ ol.program-detail__list {
   }
 
   .home-hero__title {
-    font-size: clamp(2.35rem, 12vw, 3.25rem);
+    font-size: clamp(2.3rem, 12vw, 3.75rem);
+  }
+
+  .home-hero__tagline {
+    font-size: 1.1rem;
   }
 
   .site-main--visit {
@@ -3328,7 +3421,7 @@ ol.program-detail__list {
   }
 
   .home-hero__identity {
-    margin-top: 1.4rem;
+    margin-top: 0.7rem;
     font-size: 0.8rem;
   }
 
