@@ -1673,7 +1673,7 @@
   display: grid;
   width: min(32rem, 82vw);
   height: 2.15rem;
-  grid-template-columns: minmax(2rem, 1fr) 0.45rem 2.15rem 0.45rem minmax(
+  grid-template-columns: minmax(2rem, 1fr) 0.45rem 2.6rem 0.45rem minmax(
       2rem,
       1fr
     );
@@ -1705,8 +1705,8 @@
 
 .home-hero__divider-rosette {
   display: grid;
-  width: 2.15rem;
-  height: 2.15rem;
+  width: 2.6rem;
+  height: 2.6rem;
   place-items: center;
 }
 
