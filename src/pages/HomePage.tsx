@@ -73,11 +73,25 @@ export function HomePage() {
             <span className="home-hero__divider-rule home-hero__divider-rule--start" />
             <span className="home-hero__divider-diamond" />
             <span className="home-hero__divider-rosette">
-              <svg viewBox="0 0 32 32">
-                <path d="m16 2 2.72 3.86L23 3.88l.42 4.7L28.12 9l-1.98 4.28L30 16l-3.86 2.72L28.12 23l-4.7.42L23 28.12l-4.28-1.98L16 30l-2.72-3.86L9 28.12l-.42-4.7L3.88 23l1.98-4.28L2 16l3.86-2.72L3.88 9l4.7-.42L9 3.88l4.28 1.98Z" />
-                <circle cx="16" cy="16" r="8.25" />
-                <path d="m16 7 2.3 6.7L25 11l-4.7 5 4.7 5-6.7-2.7L16 25l-2.3-6.7L7 21l4.7-5L7 11l6.7 2.7Z" />
-                <circle cx="16" cy="16" r="2.2" />
+              <svg viewBox="0 0 100 100">
+                <g strokeLinejoin="miter">
+                  <path d="M50 5 61.7 13.1 75.5 12.2 80.4 25.2 92.7 32.6 89.5 46.1 95 59.4 84.5 69.1 82.1 83.3 68.1 85.9 58.4 96.2 45.2 90.7 31.5 93.7 24.3 81.5 10.2 77.3 11.3 63.5 3 52 10.9 40.4 8 26.6 20.3 19.5 25.1 6.3 38.9 9.2Z" />
+                  {Array.from({ length: 12 }, (_, index) => (
+                    <path
+                      d="M50 8 58.5 27 54.2 41.5 50 49 45.8 41.5 41.5 27Z"
+                      key={index}
+                      transform={`rotate(${index * 30} 50 50)`}
+                    />
+                  ))}
+                  {Array.from({ length: 12 }, (_, index) => (
+                    <path
+                      d="M50 18 61.5 33.5 57 50 50 42 43 50 38.5 33.5Z"
+                      key={`inner-${index}`}
+                      transform={`rotate(${index * 30 + 15} 50 50)`}
+                    />
+                  ))}
+                  <path d="M50 37 54 44.1 61.9 42.1 58.8 49.6 65.5 54.3 57.5 55.6 57 63.7 50 59.5 43 63.7 42.5 55.6 34.5 54.3 41.2 49.6 38.1 42.1 46 44.1Z" />
+                </g>
               </svg>
             </span>
             <span className="home-hero__divider-diamond" />
